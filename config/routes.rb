@@ -6,7 +6,9 @@ Ideadb::Application.routes.draw do
   match '/signup' => 'users#new'
   match '/signin' => 'sessions#new'
   match '/signout', :to => 'sessions#destroy', :via => :delete
+
   match '/help' => 'static_pages#help'
+  match '/dashboard' => 'static_pages#dash'
 
   root :to => 'static_pages#home'
 
