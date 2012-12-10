@@ -25,6 +25,15 @@ group :assets do
   # gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
+
+  # To use Twitter Bootstrap
+  gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
+
+  # To use Backbone
+  gem 'rails-backbone'  
+
+  # To use Backbone Marionette
+  gem 'marionette-rails'
 end
 
 gem 'jquery-rails'
@@ -43,8 +52,3 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 
 # To use debugger
 # gem 'ruby-debug'
-
-# To use Twitter Bootstrap
-
-gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
-

@@ -12,7 +12,7 @@
 <h2>Collaborators</h2>
 <ul class="unstyled">
 <% @project.users.each do |u| %>
-<li><%= gravatar_for(u, :size => 20) %> <%= u.name %><i class="icon-trash"></i></a></li>
+<li><%= gravatar_for(u, :size => 20) %> <%= u.name %></li>
 <% end %>
 </ul>
 <a href="#addcollab" data-toggle="modal" role="button" class="btn btn-primary btn-large">Add Collaborator</a>

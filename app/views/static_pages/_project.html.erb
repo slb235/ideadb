@@ -1,10 +1,9 @@
 <li>
-  <%= link_to project.title, root_path %>
+  <%= link_to project.title, project_ideas_path(project) %>
     <ul class="unstyled">
     <% project.users.each do |u| %>
     <li><%= gravatar_for(u, :size => 20) %> <%= u.name %></li>
     <% end %>
   </ul>
-  <br />
   <%= link_to "Edit", edit_project_path(project), :class => 'btn btn-mini' %>
 </li>
