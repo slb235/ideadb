@@ -4,6 +4,9 @@
     // Blog is the app name
     window.Ideadb.Config['project_id'] = <%= @project.id %>;
     window.router = new Ideadb.Routers.IdeasRouter({ideas: <%= @ideas.to_json.html_safe -%>});
+
+    x = <%= @ideas.to_json.html_safe -%>;
+    console.log(x);
     Backbone.history.start();
   });
 </script>
