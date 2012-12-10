@@ -1,1 +1,19 @@
-<li><%= title %></li>
+<li>
+<div class="row-fluid">
+  <div class="span2">
+    <img src="<%= get_gravatar(user.email, 50) %>"> <br />
+    <%= user.name %>
+  </div>
+  <div class="span8">
+    <p class="idea-title"><%= title %></p>
+    <p class="tag-line">
+      <% _.each(tags, function(tag) { %>
+        <span class="label label-inverse"><%= tag.name %> | <a href="#" class="rm-tag" data-tag-id="<%= tag.id %>">x</a></span> 
+      <% }) %>
+    </p>
+  </div>
+  <div class="span2">
+    <a class="btn btn-danger btn-mini remove" href="#"><i class="icon-remove"></i></a>
+  </div>
+</div>
+</li>

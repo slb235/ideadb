@@ -1,9 +1,13 @@
 class Ideadb.Routers.IdeasRouter extends Backbone.Router
   initialize: (options) ->
     @ideas = new Ideadb.Collections.IdeasCollection()
+    
+    # Collaboartion for now
+    
     @addView = new Ideadb.Views.Ideas.AddView
       collection: @ideas
     @ideas.reset options.ideas
+
 
   routes:
     "new"      : "newIdea"

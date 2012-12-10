@@ -38,15 +38,9 @@ class IdeasController < ApplicationController
     @idea = Idea.new(:title => params[:idea][:title],
                      :project_id => params[:idea][:project_id])
 
-    tag_list = ""
+    @idea.user = current_user
 
-    if params[:idea][:tags]
-      params[:idea][:tags].each do |t|
-        tag_list += t[:name]  + ","
-      end
-    end
-
-    @idea.tag_list = tag_list
+    get_tags params
 
     respond_to do |format|
       if @idea.save
@@ -63,7 +57,9 @@ class IdeasController < ApplicationController
     @idea = Idea.find(params[:id])
 
     respond_to do |format|
-      if @idea.update_attributes(params[:idea].slice("title", "tag_list"))
+      @idea.title = params[:idea][:title]
+      get_tags params
+      if @idea.save
         format.html { redirect_to project_idea_path(@idea.project, @idea), :notice => 'Idea was successfully updated.' }
         format.json { head :no_content }
       else
@@ -83,4 +79,15 @@ class IdeasController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  private
+    def get_tags(params)
+      tag_list = ""
+      if params[:idea][:tags]
+        params[:idea][:tags].each do |t|
+          tag_list += t[:name]  + ","
+        end
+      end
+      @idea.tag_list = tag_list      
+    end
 end

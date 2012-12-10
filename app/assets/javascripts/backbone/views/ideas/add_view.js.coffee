@@ -49,6 +49,7 @@ class Ideadb.Views.Ideas.AddView extends Backbone.View
     @collection.create
       title: @.$('#new_idea_title').val()
       tags: tags
+      user: window.Ideadb.Config.current_user
     @.$('#new_idea_title').val('')
     @add_tags = []
     @render()
