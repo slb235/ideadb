@@ -36,7 +36,7 @@ class IdeasController < ApplicationController
 
   def create
     @idea = Idea.new(:title => params[:idea][:title],
-                     :project_id => params[:idea][:project_id])
+                     :project_id => params[:project_id])
 
     @idea.user = current_user
 

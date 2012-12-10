@@ -1,10 +1,10 @@
-<li>
+<li class="well">
 <div class="row-fluid">
   <div class="span2">
     <img src="<%= get_gravatar(user.email, 50) %>"> <br />
     <%= user.name %>
   </div>
-  <div class="span8">
+  <div class="span9">
     <p class="idea-title"><%= title %></p>
     <p class="tag-line">
       <% _.each(tags, function(tag) { %>
@@ -12,7 +12,7 @@
       <% }) %>
     </p>
   </div>
-  <div class="span2">
+  <div class="span1">
     <a class="btn btn-danger btn-mini remove" href="#"><i class="icon-remove"></i></a>
   </div>
 </div>

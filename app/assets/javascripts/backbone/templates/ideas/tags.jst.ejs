@@ -1,0 +1,7 @@
+<h3>Tags</h3>
+<ul class="unstyled">
+  <% _.each(tags, function(t) { %>
+    <li><span class="label label-inverse"><a href="#" class="tag" data-tag="<%= t %>"><%= t %></a></span></li>
+  <% }) %>
+</ul>
+<a href="#" class="clearfilter">Reset</a>

@@ -6,6 +6,10 @@ class Ideadb.Routers.IdeasRouter extends Backbone.Router
     
     @addView = new Ideadb.Views.Ideas.AddView
       collection: @ideas
+
+    @tagView = new Ideadb.Views.Ideas.TagView
+
+
     @ideas.reset options.ideas
 
 
@@ -19,3 +23,4 @@ class Ideadb.Routers.IdeasRouter extends Backbone.Router
 
     window.Ideadb.Application.mainRegion.show(@view)
     window.Ideadb.Application.addRegion.show(@addView)
+    window.Ideadb.Application.tagRegion.show(@tagView)

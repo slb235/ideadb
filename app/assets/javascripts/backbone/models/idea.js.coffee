@@ -3,11 +3,10 @@ class Ideadb.Models.Idea extends Backbone.Model
 
   defaults:
     title: null
-    project_id: 1
 
 class Ideadb.Collections.IdeasCollection extends Backbone.Collection
   model: Ideadb.Models.Idea
-  url: '/projects/1/ideas'
+  url: () -> "/projects/#{window.Ideadb.Config.project_id}/ideas"
 
   initialize: () ->
     @.bind 'change reset add remove', @generate_tag_list
@@ -17,7 +16,7 @@ class Ideadb.Collections.IdeasCollection extends Backbone.Collection
     window.Ideadb.Application.vent.on 'lock_updates', @lock_updates
 
   generate_tag_list: () ->
-    window.Ideadb.Application.vent.trigger 'taglist_update', _.flatten @.map (idea) ->
+    window.Ideadb.Application.vent.trigger 'taglist_update', _.unique  _.flatten @.map (idea) ->
       _.map idea.attributes.tags, (tag) ->
         tag.name
 
