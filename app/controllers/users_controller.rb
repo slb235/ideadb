@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_filter :correct_user, :only => [:edit, :update]
 
   def new
-  	@user = User.new
+    @user = User.new
   end
 
   def create

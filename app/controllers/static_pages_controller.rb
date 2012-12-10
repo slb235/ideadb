@@ -8,5 +8,6 @@ class StaticPagesController < ApplicationController
   end
 
   def dash
+    @projects = current_user.projects
   end
 end

@@ -1,7 +1,7 @@
 Ideadb::Application.routes.draw do
-
   resources :users
   resources :sessions, :only => [:new, :create, :destroy]
+  resources :projects, :only => [:new, :create, :edit, :update]
 
   match '/signup' => 'users#new'
   match '/signin' => 'sessions#new'

@@ -1,3 +1,7 @@
+<% provide(:title, 'Dashboard') %>
 <h2>Dashboard</h2>
-<h3>Projekte</h3>
-<a class="btn btn-primary btn-large">Neues Projekt erstellen</a>
+<h3>Projects</h3>
+<ul>
+  <%= render :partial => "project", :collection => @projects %>
+</ul>
+<%= link_to "New Project", new_project_path, :class => "btn btn-primary btn-large" %>
