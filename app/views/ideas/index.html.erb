@@ -1,5 +1,17 @@
 <% provide(:title, @project.title) %>
-<div id="ideas"></div>
+<div class="row-fluid">
+  <div id="ideas" class="span7">
+  </div>
+  <div class="span5">
+    <div id="addidea">
+    </div>
+    <div id="tagfilter">
+      <div class="well">
+      </div>
+    </div>
+  </div>
+</div>
+
 <script type="text/javascript">
   $(function() {
     // Blog is the app name
@@ -10,7 +22,6 @@
         project_id: <%= @project.id %>
       }
     });
-
 
   });
 </script>

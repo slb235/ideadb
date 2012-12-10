@@ -35,8 +35,18 @@ class IdeasController < ApplicationController
 
 
   def create
-    @idea = Idea.new(params[:idea])
+    @idea = Idea.new(:title => params[:idea][:title],
+                     :project_id => params[:idea][:project_id])
 
+    tag_list = ""
+
+    if params[:idea][:tags]
+      params[:idea][:tags].each do |t|
+        tag_list += t[:name]  + ","
+      end
+    end
+
+    @idea.tag_list = tag_list
 
     respond_to do |format|
       if @idea.save

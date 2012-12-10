@@ -1,19 +1,4 @@
 Ideadb.Views.Ideas ||= {}
 
-class Ideadb.Views.Ideas.IdeaView extends Backbone.View
+class Ideadb.Views.Ideas.IdeaView extends Backbone.Marionette.ItemView
   template: JST["backbone/templates/ideas/idea"]
-
-  events:
-    "click .destroy" : "destroy"
-
-  tagName: "tr"
-
-  destroy: () ->
-    @model.destroy()
-    this.remove()
-
-    return false
-
-  render: ->
-    $(@el).html(@template(@model.toJSON() ))
-    return this

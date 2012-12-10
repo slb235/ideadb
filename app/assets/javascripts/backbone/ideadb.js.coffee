@@ -19,4 +19,8 @@ window.Ideadb.Application.addInitializer (options) ->
 window.Ideadb.Application.addInitializer (options) ->
   window.router = new Ideadb.Routers.IdeasRouter({ideas: options.ideas});
   Backbone.history.start();
+
+window.Ideadb.Application.addRegions
+  mainRegion: "#ideas"
+  addRegion: "#addidea"
   
