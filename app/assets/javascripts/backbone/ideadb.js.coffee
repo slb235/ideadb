@@ -35,10 +35,10 @@ window.Ideadb.Application.addInitializer (options) ->
   window.router = new Ideadb.Routers.IdeasRouter({ideas: options.ideas});
   Backbone.history.start();
 
-  collab = () ->
-    window.Ideadb.Application.vent.trigger('update_ideas')
+  #collab = () ->
+  #  window.Ideadb.Application.vent.trigger('update_ideas')
 
-  setInterval collab, 2000 
+  #setInterval collab, 2000 
 
 window.Ideadb.Application.addRegions
   mainRegion: "#ideas"

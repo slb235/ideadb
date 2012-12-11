@@ -16,9 +16,20 @@ class Ideadb.Collections.IdeasCollection extends Backbone.Collection
     window.Ideadb.Application.vent.on 'lock_updates', @lock_updates
 
   generate_tag_list: () ->
-    window.Ideadb.Application.vent.trigger 'taglist_update', _.unique  _.flatten @.map (idea) ->
+    flat_tags = _.flatten @.map (idea) ->
       _.map idea.attributes.tags, (tag) ->
         tag.name
+
+    uniq_tags = _.unique flat_tags
+    weighted_tags = {}
+
+    _.each flat_tags, (tag) ->
+      if weighted_tags[tag]
+        weighted_tags[tag]++
+      else
+        weighted_tags[tag] = 1
+
+    window.Ideadb.Application.vent.trigger 'taglist_update', uniq_tags, weighted_tags
 
   update_ideas: () =>
     @fetch() unless @update_lock

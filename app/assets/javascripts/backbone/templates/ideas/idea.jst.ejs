@@ -5,15 +5,32 @@
     <%= user.name %>
   </div>
   <div class="span9">
-    <p class="idea-title"><%= title %></p>
+    <div class="idea-title"><%= converter.makeHtml(title) %></div>
     <p class="tag-line">
       <% _.each(tags, function(tag) { %>
         <span class="label label-inverse"><%= tag.name %> | <a href="#" class="rm-tag" data-tag-id="<%= tag.id %>">x</a></span> 
       <% }) %>
+      <span class="label label-inverse"><a href="#" class="show-tag-add">+</a></span> 
+    </p>
+    <p class="tag-add-line" style="display: none">
+      <input type="text" class="input-xlarge tag-input">
     </p>
   </div>
   <div class="span1">
     <a class="btn btn-danger btn-mini remove" href="#"><i class="icon-remove"></i></a>
+  </div>
+</div>
+<div class="modal hide fade remove-modal">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3>Hope you are sure</h3>
+  </div>
+  <div class="modal-body">
+    <p>Its your idea! Your idea is gone! You have no idea in your project. Where it is I can't say, but in your project it's not!</p>
+  </div>
+  <div class="modal-footer">
+    <a href="#" class="btn" data-dismiss="modal">No</a>
+    <a href="#" class="btn btn-danger remove-idea" data-dismiss="modal">I want that to happen</a>
   </div>
 </div>
 </li>

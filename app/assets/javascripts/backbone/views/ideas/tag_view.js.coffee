@@ -13,12 +13,13 @@ class Ideadb.Views.Ideas.TagView extends Backbone.View
   initialize: () ->
     @known_tags = []
 
-    window.Ideadb.Application.vent.on 'taglist_update', (taglist) =>
-      @known_tags = taglist
+    window.Ideadb.Application.vent.on 'taglist_update', (taglist, wtags) =>
+      @known_tags = wtags
       @render()
 
   render: () ->
-    @.$el.html @template tags: @known_tags
+    sorted = _.sortBy _.pairs(@known_tags), (t) -> -1 * t[1]
+    @.$el.html @template tags: sorted
 
   tagfilter: (e) ->
     e.preventDefault()

@@ -37,6 +37,8 @@ class Ideadb.Views.Ideas.AddView extends Backbone.View
           @add_tags.push val
           @render()
           @.$('#new_idea_tags').focus()
+      else
+        @onAddIdea()
 
   onTagRemove: (e) ->
     @add_tags = _.reject @add_tags, (tag) -> tag == $(e.target).data('tag')
