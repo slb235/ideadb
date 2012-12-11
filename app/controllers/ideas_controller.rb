@@ -1,7 +1,7 @@
 class IdeasController < ApplicationController
   def index
     @project = Project.find_by_id(params[:project_id])
-    @ideas = @project.ideas :order => :id
+    @ideas = @project.ideas.all :order => :id
 
     respond_to do |format|
       format.html # index.html.erb
