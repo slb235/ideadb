@@ -2,6 +2,7 @@ Ideadb.Views.Ideas ||= {}
 
 class Ideadb.Views.Ideas.IdeaView extends Backbone.Marionette.ItemView
   template: JST["backbone/templates/ideas/idea"]
+  className: "idea"
 
   events: 
     'click .idea-title': 'makeTitleEditable'
@@ -27,6 +28,7 @@ class Ideadb.Views.Ideas.IdeaView extends Backbone.Marionette.ItemView
     @comments = false
 
   makeTitleEditable: (e) ->
+    e.preventDefault()
     @$('.idea-title').attr 'contenteditable', 'true'
     @$('.idea-title').html @model.get('title')
     window.Ideadb.Application.vent.trigger 'lock_updates', true
@@ -38,22 +40,24 @@ class Ideadb.Views.Ideas.IdeaView extends Backbone.Marionette.ItemView
     @render()
     window.Ideadb.Application.vent.trigger 'lock_updates', false
 
-  showTagAdd: () ->
+  showTagAdd: (e) ->
+    e.preventDefault()
     @$('.tag-add-line').show()
     @$('.tag-input').focus()
     @.$('.tag-input').typeahead
       source: (query) =>
         return window.router.addView.known_tags.filter (t) -> t.toLowerCase().indexOf(query.toLowerCase()) != -1
 
-  showRemoveModal: () ->
-    console.log @$('.remove-modal')
+  showRemoveModal: (e) ->
+    e.preventDefault()
     @$('.remove-modal').modal('show')
 
-  removeIdea: () ->
+  removeIdea: (e) ->
+    e.preventDefault()
     @model.destroy()
 
   removeTag: (e) ->
-    e.stopPropagation()
+    e.preventDefault()
     @model.set 'tags', _.reject @model.get('tags'), (tag) -> tag.id == $(e.target).data('tag-id')
     @model.save()
     @render()
@@ -74,6 +78,8 @@ class Ideadb.Views.Ideas.IdeaView extends Backbone.Marionette.ItemView
       @comment_collection.fetch()
       @$('.comments').html @comment_view.render().$el
       @$('.comments').show()
+      @$('.icon-toggle').removeClass('icon-comment-alt').addClass('icon-comments-alt')
+
 
   showComments: (e) ->
     e.preventDefault()

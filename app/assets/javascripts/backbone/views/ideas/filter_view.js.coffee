@@ -38,8 +38,10 @@ class Ideadb.Views.Ideas.FilterView extends Backbone.View
     @locked = false
 
   removeTag: (e) ->
+    e.preventDefault()
     window.Ideadb.Application.vent.trigger 'remove_filter',
       tag: $(e.target).data('tag')
 
   resetFilter: (e) ->
+    e.preventDefault()
     window.Ideadb.Application.vent.trigger 'reset_filter'

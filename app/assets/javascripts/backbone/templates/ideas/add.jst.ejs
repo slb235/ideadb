@@ -1,11 +1,8 @@
 <h3>Add Idea</h3>
-<label for="new_idea_title">Idea</label>
-<textarea clas="input-xlarge" id="new_idea_title" placeholder="Destroy all humans" style="width: 270px"></textarea>
-<label for="new_idea_tags">Tags</label>
-<input type="text" class="input-xlarge" id="new_idea_tags">
-<p class="help-block">
-<% _.each(add_tags, function(tag) { %>
-<span class="label label-inverse"><%= tag %> | <a href="#" class="rm-tag" data-tag="<%= tag %>">x</a></span> 
-<% }) %>
-<br /><br />
-<a class="btn btn-large btn-primary" id="add_idea_btn" href="#">Add Idea</a>
+<div class="content">
+  <textarea clas="input-xlarge" id="new_idea_title" placeholder="Describe your idea..."></textarea>
+  <input type="text" class="input-xlarge" id="new_idea_tags" placeholder="Give some tags to it...">
+  <% _.each(add_tags, function(tag) { %>
+  <span class="tag"><%= tag %><a href="#" class="rm-tag tag-delete" data-tag="<%= tag %>">x</a></span>
+  <% }) %>
+</div>

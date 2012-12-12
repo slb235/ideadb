@@ -4,12 +4,11 @@ class Ideadb.Views.Ideas.AddView extends Backbone.View
   template: JST["backbone/templates/ideas/add"]
 
   tagName: "div"
-  className: "well"
+  className: "iwell"
 
   events:
     'keypress #new_idea_tags': 'onTagKeyPress'
     'click .rm-tag': 'onTagRemove'
-    'click #add_idea_btn': 'onAddIdea'
 
   initialize: () ->
     @known_tags = []
@@ -41,6 +40,7 @@ class Ideadb.Views.Ideas.AddView extends Backbone.View
         @onAddIdea()
 
   onTagRemove: (e) ->
+    e.preventDefault()
     @add_tags = _.reject @add_tags, (tag) -> tag == $(e.target).data('tag')
     @render()
 

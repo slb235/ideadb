@@ -1,3 +1,186 @@
 // Place all the styles related to the Ideas controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+$dark: #505050;
+$light: #eee;
+
+.iwell {
+  background-color: $light;
+  border: 1px solid $dark;  
+  border-radius: 4px;
+  box-shadow: 3px 3px 3px #707070; 
+  margin: 10px;
+  margin-left: 0px;
+}
+
+.iwell > h3 {
+  font-size: 1.6em;
+  background-color: $dark;
+  color: #eee;
+  text-align: right;
+  margin: 0px;
+  padding-right: 13px;
+}
+
+.iwell > .content {
+  margin: 10px;
+}
+
+.iwell input, .iwell textarea {
+  width: 96%;
+}
+
+.tag {
+  background-color: $dark;
+  padding: 2px 4px;
+  font-size: 0.8em; 
+  border-radius: 2px;
+  color: #eee;
+  font-weight: bold;
+}
+
+.tag > a:link, .tag > a:hover, .tag > a:visited, .tag > a:active {
+  color: #eee;
+  text-decoration: none;
+}
+
+.tag > a.rm-tag {
+  color: #ED665F;
+  margin-left: 4px;
+  padding-left: 4px;
+  padding-right: 1px;
+  border-left: 1px dotted red;
+}
+
+.tag > a.add-tag {
+  color: #66ED5F;
+}
+
+.idea {
+  border: 1px solid $dark;
+  margin-bottom: 12px;
+  border-radius: 3px;
+  box-shadow: 2px 2px 2px #707070; 
+}
+
+.idea .author {
+  padding-top: 5px;
+  text-align: center;
+  width: 80px;
+  float: left;
+}
+
+.idea .content {
+  padding-top: 5px;
+  width: 655px;
+  float: left;
+  border-left: 1px solid #ccc;
+}
+
+.idea .content > div {
+  padding: 8px;
+}
+
+.idea .idea-title {
+  background-color: white;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+
+.idea .tag-line {
+  text-align: right;
+  padding-top: 0px !important;
+  padding-bottom: 4px !important;
+}
+
+.idea .tag-add-line {
+  padding-left: 7px !important;
+}
+
+.idea .tag-add-line > input {
+  margin-bottom: 0px;
+  width: 97%;
+}
+
+.idea .idea-title p {
+  margin: 0px;
+}
+
+.idea .options-line {
+  text-align: right;
+  font-size: 1.3em;
+}
+
+.idea .options-line a, .reset-all a, .add-project a {
+  color: $dark;  
+  text-decoration: none;
+}
+
+
+.idea .author img {
+  border-radius: 2px;
+}
+
+.idea .comments {
+  border-top: 1px solid #ccc;
+}
+
+.comment {
+  border-bottom: 1px solid #ccc;
+}
+
+#comments-container > div:nth-child(odd) { 
+  background-color: #fff;
+}
+
+#comments-container > div:nth-child(even) { 
+}
+
+.comment {
+  font-size: 0.85em; 
+}
+
+.comment > .content > p {
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-bottom: 4px;
+}
+
+.new-comment {
+  margin-left: 8px;
+  margin-top: 8px;
+
+}
+
+.comments form {
+  margin: 0px;
+  margin-bottom: 8px;
+  padding: 0px;
+}
+
+.author-name {
+  display: block;
+  padding-bottom: 10px;
+  font-weight: bold;
+  font-size: 0.95em;
+}
+
+.reset-all, .add-project {
+  text-align: right;
+  padding-right: 3px;
+}
+
+#filter input {
+  width: 98%;
+}
+
+.add-project {
+  font-size: 1.5em;
+}
+
+.project-title > a {
+  color: $dark;
+  font-size: 1.4em;
+}
+

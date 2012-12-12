@@ -1,26 +1,35 @@
-<li class="well">
-<div class="row-fluid">
-  <div class="span2">
-    <img src="<%= get_gravatar(user.email, 50) %>"> <br />
-    <%= user.name %>
-  </div>
-  <div class="span9">
-    <div class="idea-title"><%= converter.makeHtml(title) %></div>
-    <p class="tag-line">
-      <% _.each(tags, function(tag) { %>
-        <span class="label label-inverse"><%= tag.name %> | <a href="#" class="rm-tag" data-tag-id="<%= tag.id %>">x</a></span> 
-      <% }) %>
-      <span class="label label-inverse"><a href="#" class="show-tag-add">+</a></span> 
-    </p>
-    <p class="tag-add-line" style="display: none">
-      <input type="text" class="input-xlarge tag-input">
-    </p>
-  </div>
-  <div class="span1">
-    <a class="btn btn-danger btn-mini remove" href="#"><i class="icon-remove"></i></a>
-    <a class="btn btn-info btn-mini show-comments" href="#"><i class="icon-arrow-down"></i></a>
-  </div>
+<div class="author">
+  <span class="author-name"><%= user.name %></span>
+  <img src="<%= get_gravatar(user.email,50) %>">
 </div>
+
+<div class="content">
+
+  <div class="tag-line">
+    <% _.each(tags, function(tag) { %>
+      <span class="tag"><%= tag.name %><a href="#" class="rm-tag" data-tag-id="<%= tag.id %>">x</a></span> 
+    <% }) %>
+    <span class="tag"><a href="#" class="show-tag-add add-tag">+</a></span> 
+  </div>
+
+  <div class="tag-add-line" style="display: none">
+    <input type="text" class="tag-input" placeholder="Enter new tags here...">
+  </div>
+
+  <div class="idea-title">
+    <%= converter.makeHtml(title) %>
+  </div>
+
+
+  <div class="options-line">
+    <a class="show-comments" href="#" title="Open Comments"><i class="icon-toggle icon-comment-alt"></i></a>
+    <a class="remove" href="#" title="Delete this idea"><i class="icon-trash"></i></a>
+  </div>
+
+</div>
+
+<div class="clearfix"></div>
+
 <div class="modal hide fade remove-modal">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -36,8 +45,5 @@
 </div>
 
 <div class="comments" style="display:none">
-  <marquee>loading...</marque>
 </div>
 
-
-</li>

@@ -2,7 +2,7 @@
 class Ideadb.Views.Ideas.CommentsView extends Backbone.Marionette.CompositeView
   template: JST["backbone/templates/ideas/comments"]
   itemView: Ideadb.Views.Ideas.CommentView
-  itemViewContainer: "ul"
+  itemViewContainer: "#comments-container"
 
   events:
     'keypress .new-comment': 'newCommentKeypress'

@@ -1,5 +1,15 @@
-<input type="text" class="input-medium search-query" placeholder="Search" id="search_query">
-<% _.each(tag, function(t) { %>
-  <span class="label label-inverse"><%= t %> | <a href="#" class="rm-tag" data-tag="<%= t %>">x</a></span> 
-<% }) %>
-<a href="#" id="reset-filter">Reset all</a>
+<div class="iwell">
+  <h3>Filter</h3>
+  <div class="content">
+    <input type="text" placeholder="Search..." id="search_query">
+    <div class="row-fluid">
+      <div class="span11">
+        <% _.each(tag, function(t) { %>
+          <span class="tag"><%= t %><a href="#" class="rm-tag" data-tag="<%= t %>">x</a></span> 
+        <% }) %>
+      </div>
+      <div class="span1 reset-all">
+        <a href="#" id="reset-filter" title="Reset all filters"><i class=" icon-remove"></i></a>
+      </div>
+  </div>
+</div>  

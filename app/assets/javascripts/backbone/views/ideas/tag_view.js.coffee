@@ -4,10 +4,10 @@ class Ideadb.Views.Ideas.TagView extends Backbone.View
   template: JST["backbone/templates/ideas/tags"]
 
   tagName: "div"
-  className: "well"
+  className: "iwell"
 
   events: 
-    'click .tag': 'tagfilter'
+    'click .tag-link': 'tagfilter'
     
   initialize: () ->
     @known_tags = []
