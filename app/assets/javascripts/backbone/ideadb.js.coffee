@@ -44,4 +44,5 @@ window.Ideadb.Application.addRegions
   mainRegion: "#ideas"
   addRegion: "#addidea"
   tagRegion: "#tagfilter"
+  filterRegion: "#filter"
   

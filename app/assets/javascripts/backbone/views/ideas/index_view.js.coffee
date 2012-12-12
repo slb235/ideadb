@@ -7,12 +7,37 @@ class Ideadb.Views.Ideas.IndexView extends Backbone.Marionette.CompositeView
   filter_settings: {}
 
   initialize: () ->
-    window.Ideadb.Application.vent.on 'filter_ideas', (filter_settings) =>
-      @filter_settings = filter_settings
-      @render()
+    Ideadb.Application.vent.on 'add_filter', (new_filter) =>
+      if new_filter.tag
+        @filter_settings.tag = [] unless @filter_settings.tag
+        @filter_settings.tag.push (new_filter.tag)
+
+      @filter_settings.title = new_filter.title if new_filter.title?
+      @filter_changed()
+
+    Ideadb.Application.vent.on 'remove_filter', (remove) =>
+      if remove.tag
+        @filter_settings.tag = _.without @filter_settings.tag, remove.tag
+        @filter_changed()
+
+    Ideadb.Application.vent.on 'reset_filter', () =>
+      @filter_settings = {}
+      @filter_changed()
+  
+
+  filter_changed: () ->
+    Ideadb.Application.vent.trigger 'filter_changed', @filter_settings
+    @render()  
 
   filter: (item) =>
+    item_good = true
+
+    if @filter_settings.title
+      item_good = false if item.get('title').indexOf(@filter_settings.title) == -1
+        
     if @filter_settings.tag
-      return _.contains (item.attributes.tags.map (t) -> t.name), @filter_settings.tag
-    return true
+      _.each @filter_settings.tag, (tag) ->
+        item_good = false unless _.contains (item.attributes.tags.map (t) -> t.name), tag
+
+    return item_good
 

@@ -75,6 +75,7 @@ class Ideadb.Views.Ideas.IdeaView extends Backbone.Marionette.ItemView
       @$('.comments').show()
 
   showComments: (e) ->
+    e.preventDefault()
     @comments = ! @comments
     @render()
 

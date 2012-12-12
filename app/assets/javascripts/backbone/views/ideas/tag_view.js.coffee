@@ -8,8 +8,7 @@ class Ideadb.Views.Ideas.TagView extends Backbone.View
 
   events: 
     'click .tag': 'tagfilter'
-    'click .clearfilter': 'reset'
-
+    
   initialize: () ->
     @known_tags = []
 
@@ -23,9 +22,5 @@ class Ideadb.Views.Ideas.TagView extends Backbone.View
 
   tagfilter: (e) ->
     e.preventDefault()
-    window.Ideadb.Application.vent.trigger 'filter_ideas', 
+    window.Ideadb.Application.vent.trigger 'add_filter', 
       tag: $(e.target).data('tag')
-
-  reset: (e) ->
-    e.preventDefault()
-    window.Ideadb.Application.vent.trigger 'filter_ideas', {}

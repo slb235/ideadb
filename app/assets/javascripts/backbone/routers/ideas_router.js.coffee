@@ -9,6 +9,7 @@ class Ideadb.Routers.IdeasRouter extends Backbone.Router
 
     @tagView = new Ideadb.Views.Ideas.TagView
 
+    @filterView = new Ideadb.Views.Ideas.FilterView
 
     @ideas.reset options.ideas
 
@@ -25,3 +26,4 @@ class Ideadb.Routers.IdeasRouter extends Backbone.Router
     window.Ideadb.Application.mainRegion.show(@view)
     window.Ideadb.Application.addRegion.show(@addView)
     window.Ideadb.Application.tagRegion.show(@tagView)
+    window.Ideadb.Application.filterRegion.show(@filterView)
