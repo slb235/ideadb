@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
   has_and_belongs_to_many :projects
+  has_many :ideas
+  has_many :comments
 
   attr_accessible :name, :email, :password, :password_confirmation
   has_secure_password

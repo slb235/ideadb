@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   before_filter :signed_in_user
-  before_filter :correct_user
+  before_filter :correct_user, :only => [:edit, :update, :show]
 
   def new
     @project = Project.new

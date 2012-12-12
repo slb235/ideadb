@@ -19,7 +19,8 @@ class Ideadb.Routers.IdeasRouter extends Backbone.Router
     ".*"        : "index"
 
   index: ->
-    @view = new Ideadb.Views.Ideas.IndexView(collection: @ideas)
+    @view = new Ideadb.Views.Ideas.IndexView
+      collection: @ideas
 
     window.Ideadb.Application.mainRegion.show(@view)
     window.Ideadb.Application.addRegion.show(@addView)

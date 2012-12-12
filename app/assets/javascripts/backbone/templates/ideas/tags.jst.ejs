@@ -1,7 +1,11 @@
 <h3>Tags</h3>
 <ul class="unstyled">
   <% _.each(tags, function(t) { %>
-    <li><span class="label label-inverse"><a href="#" class="tag" data-tag="<%= t[0] %>"><%= t[0] %></a></span> x <%= t[1] %></li>
+    <li>
+      <span class="badge badge-info"><%= t[1] %></span>
+      <span class="label label-inverse"><a href="#" class="tag" data-tag="<%= t[0] %>"><%= t[0] %></a></span>
+    </div>
+    </li>
   <% }) %>
 </ul>
 <a href="#" class="clearfilter">Reset</a>
