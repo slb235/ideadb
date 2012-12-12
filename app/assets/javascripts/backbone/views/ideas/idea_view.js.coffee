@@ -46,6 +46,7 @@ class Ideadb.Views.Ideas.IdeaView extends Backbone.Marionette.ItemView
         return window.router.addView.known_tags.filter (t) -> t.toLowerCase().indexOf(query.toLowerCase()) != -1
 
   showRemoveModal: () ->
+    console.log @$('.remove-modal')
     @$('.remove-modal').modal('show')
 
   removeIdea: () ->
