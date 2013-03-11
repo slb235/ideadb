@@ -1,0 +1,9 @@
+<% provide(:title, 'Lost Password') %>
+<h2>Lost Password</h2> 
+
+<%= form_tag('/newpw') do -%>
+  <label for="email">Email</label>
+  <input id="email" name="email" size="30" type="text" />
+  <br />
+  <input class="btn btn-large btn-primary" name="commit" type="submit" value="Get a new password" />
+<% end -%>

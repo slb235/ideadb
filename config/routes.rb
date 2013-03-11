@@ -9,6 +9,8 @@ Ideadb::Application.routes.draw do
   end
 
   match '/signup' => 'users#new'
+  match '/pwlost' => 'users#pwlost'
+  match '/newpw' => 'users#newpw'
   match '/signin' => 'sessions#new'
   match '/signout', :to => 'sessions#destroy', :via => :delete
 

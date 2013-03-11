@@ -2,6 +2,23 @@ class UsersController < ApplicationController
   before_filter :signed_in_user, :only => [:edit, :update]
   before_filter :correct_user, :only => [:edit, :update]
 
+  def newpw
+    user = User.find_by_email(params[:email])
+    if user
+      newpw = rand(36**7).to_s(36)
+      user.password = newpw
+      user.password_confirmation = newpw
+      user.save!
+
+      UserMailer.new_pw(newpw, user).deliver
+      flash[:success] = "Check your mails for your new password"
+      redirect_to '/'
+    else
+      flash[:error] = "Cant find email"
+      redirect_to '/pwlost'
+    end
+  end
+
   def new
     @user = User.new
   end
