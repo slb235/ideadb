@@ -10,6 +10,9 @@ class Ideadb.Views.Ideas.IndexView extends Backbone.Marionette.CompositeView
     'click .show_all': 'show_all_comments'
     'click .hide_all': 'hide_all_comments'
 
+  ui:
+    'title': 'h3'
+
   initialize: () ->
     Ideadb.Application.vent.on 'add_filter', (new_filter) =>
       if new_filter.tag
@@ -34,7 +37,9 @@ class Ideadb.Views.Ideas.IndexView extends Backbone.Marionette.CompositeView
     Ideadb.Application.vent.on 'reset_filter', () =>
       @filter_settings = {}
       @filter_changed()
-  
+
+  onRender: () =>
+    @ui.title.text @collection.models.filter(@filter).length + ' ideas'
 
   filter_changed: () ->
     Ideadb.Application.vent.trigger 'filter_changed', @filter_settings
