@@ -33,7 +33,7 @@ class Ideadb.Views.Ideas.IndexView extends Backbone.Marionette.CompositeView
     item_good = true
 
     if @filter_settings.title
-      item_good = false if item.get('title').indexOf(@filter_settings.title) == -1
+      item_good = false if item.get('title').toLowerCase().indexOf(@filter_settings.title.toLowerCase()) == -1
         
     if @filter_settings.tag
       _.each @filter_settings.tag, (tag) ->
