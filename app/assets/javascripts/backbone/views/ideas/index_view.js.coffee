@@ -6,6 +6,10 @@ class Ideadb.Views.Ideas.IndexView extends Backbone.Marionette.CompositeView
   itemViewContainer: "#ideas"
   filter_settings: {}
 
+  events:
+    'click .show_all': 'show_all_comments'
+    'click .hide_all': 'hide_all_comments'
+
   initialize: () ->
     Ideadb.Application.vent.on 'add_filter', (new_filter) =>
       if new_filter.tag
@@ -27,7 +31,8 @@ class Ideadb.Views.Ideas.IndexView extends Backbone.Marionette.CompositeView
 
   filter_changed: () ->
     Ideadb.Application.vent.trigger 'filter_changed', @filter_settings
-    @render()  
+    @render() 
+
 
   filter: (item) =>
     item_good = true
@@ -41,3 +46,8 @@ class Ideadb.Views.Ideas.IndexView extends Backbone.Marionette.CompositeView
 
     return item_good
 
+  show_all_comments: () ->
+    $('.icon-comment-alt').trigger 'click'
+
+  hide_all_comments: () ->
+    $('.icon-comments-alt').trigger 'click'
