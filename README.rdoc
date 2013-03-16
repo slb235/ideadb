@@ -1,5 +1,5 @@
 == Welcome to Ideadb
 
-Small Backbon/Marionette/Rails application.
+Tag your ideas with this app.
 
-Link: http://intense-ocean-7783.herokuapp.com/
+Demo: http://ideadb.herokuapp.com/
