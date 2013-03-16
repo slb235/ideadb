@@ -3,6 +3,7 @@ class Ideadb.Models.Idea extends Backbone.Model
 
   defaults:
     title: null
+    created_at: new Date()
 
 class Ideadb.Collections.IdeasCollection extends Backbone.Collection
   model: Ideadb.Models.Idea

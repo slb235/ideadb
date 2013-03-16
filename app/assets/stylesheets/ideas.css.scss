@@ -64,19 +64,26 @@ $tag_without: #E68580;
 .idea {
   border: 1px solid $dark;
   margin-bottom: 12px;
-  border-radius: 3px;
-  box-shadow: 2px 2px 2px #707070; 
-}
-
-.idea .author {
-  padding-top: 5px;
-  text-align: center;
-  width: 80px;
-  float: left;
 }
 
 .idea .content {
   padding-top: 5px;
+  width: 100%;
+}
+
+.idea .author {
+  padding-top: 5px;
+  width: 45%;
+  float: left;
+}
+
+.comment > .author {
+  width: 80px;
+  float: left;
+  text-align: center; 
+}
+
+.comment > .content {
   width: 655px;
   float: left;
   border-left: 1px solid #ccc;
@@ -112,6 +119,8 @@ $tag_without: #E68580;
 }
 
 .idea .options-line {
+  width: 45%;
+  float: right;
   text-align: right;
   font-size: 1.3em;
 }
@@ -164,10 +173,13 @@ $tag_without: #E68580;
 }
 
 .author-name {
-  display: block;
-  padding-bottom: 10px;
   font-weight: bold;
   font-size: 0.95em;
+}
+
+.authored-at {
+  font-size: 0.75em;
+  font-style: italic;
 }
 
 .reset-all, .add-project {
