@@ -1,4 +1,6 @@
 class IdeasController < ApplicationController
+  before_filter :correct_user
+  
   def index
     @project = Project.find_by_id(params[:project_id])
     @ideas = @project.ideas.all :order => :id
@@ -90,4 +92,12 @@ class IdeasController < ApplicationController
       end
       @idea.tag_list = tag_list      
     end
+
+    def correct_user
+      @project = Project.find_by_id(params[:project_id])
+      unless @project.users.include? current_user
+        flash[:warning] = "This is not ur project"
+        redirect_to dashboard_path
+      end 
+    end    
 end
