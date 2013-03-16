@@ -14,7 +14,11 @@ class Ideadb.Views.Ideas.IndexView extends Backbone.Marionette.CompositeView
     Ideadb.Application.vent.on 'add_filter', (new_filter) =>
       if new_filter.tag
         @filter_settings.tag = [] unless @filter_settings.tag
-        @filter_settings.tag.push (new_filter.tag)
+        @filter_settings.tag.push new_filter.tag
+
+      if new_filter.withouttag
+        @filter_settings.withouttag = [] unless @filter_settings.withouttag
+        @filter_settings.withouttag.push new_filter.withouttag
 
       @filter_settings.title = new_filter.title if new_filter.title?
       @filter_changed()
@@ -22,6 +26,9 @@ class Ideadb.Views.Ideas.IndexView extends Backbone.Marionette.CompositeView
     Ideadb.Application.vent.on 'remove_filter', (remove) =>
       if remove.tag
         @filter_settings.tag = _.without @filter_settings.tag, remove.tag
+        @filter_changed()
+      if remove.withouttag
+        @filter_settings.withouttag = _.without @filter_settings.withouttag, remove.withouttag
         @filter_changed()
 
     Ideadb.Application.vent.on 'reset_filter', () =>
@@ -33,7 +40,6 @@ class Ideadb.Views.Ideas.IndexView extends Backbone.Marionette.CompositeView
     Ideadb.Application.vent.trigger 'filter_changed', @filter_settings
     @render() 
 
-
   filter: (item) =>
     item_good = true
 
@@ -43,6 +49,10 @@ class Ideadb.Views.Ideas.IndexView extends Backbone.Marionette.CompositeView
     if @filter_settings.tag
       _.each @filter_settings.tag, (tag) ->
         item_good = false unless _.contains (item.attributes.tags.map (t) -> t.name), tag
+
+    if @filter_settings.withouttag
+      _.each @filter_settings.withouttag, (tag) ->
+        item_good = false if _.contains (item.attributes.tags.map (t) -> t.name), tag
 
     return item_good
 

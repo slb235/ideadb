@@ -7,9 +7,11 @@ class Ideadb.Views.Ideas.FilterView extends Backbone.View
     'focus #search_query': 'lockUpdates'
     'blur #search_query': 'unlockUpdates'
     'click .rm-tag': 'removeTag'
+    'click .rm-withouttag': 'removeWithoutTag'
     'click #reset-filter': 'resetFilter'
 
   filter_settings:
+    withouttag: []
     tag: []
     title: ''
 
@@ -23,6 +25,7 @@ class Ideadb.Views.Ideas.FilterView extends Backbone.View
 
   render: () ->
     @filter_settings.tag = [] unless @filter_settings.tag
+    @filter_settings.withouttag = [] unless @filter_settings.withouttag
     @filter_settings.title = '' unless @filter_settings.title
     @.$el.html @template @filter_settings
     @$('#search_query').val @filter_settings.title
@@ -41,6 +44,11 @@ class Ideadb.Views.Ideas.FilterView extends Backbone.View
     e.preventDefault()
     window.Ideadb.Application.vent.trigger 'remove_filter',
       tag: $(e.target).data('tag')
+
+  removeWithoutTag: (e) ->
+    e.preventDefault()
+    window.Ideadb.Application.vent.trigger 'remove_filter',
+      withouttag: $(e.target).data('tag')
 
   resetFilter: (e) ->
     e.preventDefault()

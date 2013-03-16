@@ -4,6 +4,7 @@
 
 $dark: #505050;
 $light: #eee;
+$tag_without: #E68580;
 
 .iwell {
   background-color: $light;
@@ -39,12 +40,16 @@ $light: #eee;
   font-weight: bold;
 }
 
+.withouttag {
+  color: $tag_without;
+}
+
 .tag > a:link, .tag > a:hover, .tag > a:visited, .tag > a:active {
   color: #eee;
   text-decoration: none;
 }
 
-.tag > a.rm-tag {
+.tag > a.rm-tag, .tag > a.rm-withouttag {
   color: #ED665F;
   margin-left: 4px;
   padding-left: 4px;
@@ -185,4 +190,8 @@ $light: #eee;
 
 html {
     overflow-y: scroll;
+}
+
+.without-tag-link {
+  color: $tag_without !important;
 }
