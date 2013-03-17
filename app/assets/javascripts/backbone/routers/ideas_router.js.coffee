@@ -6,11 +6,9 @@ class Ideadb.Routers.IdeasRouter extends Backbone.Router
     
     @addView = new Ideadb.Views.Ideas.AddView
       collection: @ideas
-
     @tagView = new Ideadb.Views.Ideas.TagView
-
     @filterView = new Ideadb.Views.Ideas.FilterView
-
+    @sortingView = new Ideadb.Views.Ideas.SortingView
     @ideas.reset options.ideas
 
 
@@ -22,8 +20,10 @@ class Ideadb.Routers.IdeasRouter extends Backbone.Router
   index: ->
     @view = new Ideadb.Views.Ideas.IndexView
       collection: @ideas
+      sort: @sortingView.do_sort
 
     window.Ideadb.Application.mainRegion.show(@view)
     window.Ideadb.Application.addRegion.show(@addView)
     window.Ideadb.Application.tagRegion.show(@tagView)
     window.Ideadb.Application.filterRegion.show(@filterView)
+    window.Ideadb.Application.sortingRegion.show(@sortingView)

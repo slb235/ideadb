@@ -6,18 +6,20 @@
 #= require_tree ./routers
 
 Backbone.Marionette.CollectionView.prototype.addChildView = (item, collection, options) ->
-  filter = @.options.filter || @.filter
+  filter = @options.filter || @filter
   if filter and !filter(item)
     return
   this.closeEmptyView()
   ItemView = this.getItemView()
-  @.addItemView item, ItemView, options.index
+  @addItemView item, ItemView, options.index
 
 Backbone.Marionette.CollectionView.prototype.showCollection = () ->
-  filter = @.options.filter || @.filter
+  filter = @options.filter || @filter
+  sort = @options.sort || @sort || (collection) -> collection
   that = @
-  ItemView = @.getItemView()
-  @.collection.each (item, index) ->
+  ItemView = @getItemView()
+  window.collection = @collection
+  _.each sort(@collection.models), (item, index) ->
     if filter and !filter(item)
       return
     that.addItemView item, ItemView, index
@@ -45,4 +47,5 @@ window.Ideadb.Application.addRegions
   addRegion: "#addidea"
   tagRegion: "#tagfilter"
   filterRegion: "#filter"
+  sortingRegion: "#sorting"
   

@@ -38,6 +38,12 @@ class Ideadb.Views.Ideas.IndexView extends Backbone.Marionette.CompositeView
       @filter_settings = {}
       @filter_changed()
 
+    Ideadb.Application.vent.on 'sorting_changed', () =>
+      @render()
+
+    @collection.on 'add', () =>
+      @render()
+
   onRender: () =>
     $.livestamp.update()
     @ui.title.text @collection.models.filter(@filter).length + ' ideas'

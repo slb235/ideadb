@@ -125,7 +125,7 @@ $tag_without: #E68580;
   font-size: 1.3em;
 }
 
-.idea .options-line a, .reset-all a, .add-project a {
+.idea .options-line a, .reset-all a, .add-project a, .sortingbtn a{
   color: $dark;  
   text-decoration: none;
 }
@@ -180,6 +180,7 @@ $tag_without: #E68580;
 .authored-at {
   font-size: 0.75em;
   font-style: italic;
+  color: #666;
 }
 
 .reset-all, .add-project {
@@ -206,4 +207,13 @@ html {
 
 .without-tag-link {
   color: $tag_without !important;
+}
+
+.icon-sorting {
+  padding-right: 0.5em;
+  color: #ccc;
+}
+
+.icon-sorting.active {
+  color: #333;
 }
