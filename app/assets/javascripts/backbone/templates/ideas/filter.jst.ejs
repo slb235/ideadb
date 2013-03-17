@@ -9,7 +9,10 @@
         <% }) %>
         <% _.each(withouttag, function(t) { %>
           <span class="tag withouttag"><%= t %><a href="#" class="rm-withouttag" data-tag="<%= t %>">x</a></span> 
-        <% }) %>        
+        <% }) %>
+        <% _.each(user, function(t) { %>
+          <span class="tag user"><%= t %><a href="#" class="rm-user" data-user="<%= t %>">x</a></span> 
+        <% }) %>  
       </div>
       <div class="span1 reset-all">
         <a href="#" id="reset-filter" title="Reset all filters"><i class=" icon-remove"></i></a>

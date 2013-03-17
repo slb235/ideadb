@@ -13,6 +13,7 @@ class Ideadb.Views.Ideas.IdeaView extends Backbone.Marionette.ItemView
     'click .show-comments': 'showComments'
     'blur .idea-title': 'finishedEditing'
     'keypress .tag-input': 'onTagKeyPress'
+    'click .user-filter': 'addUserFilter'
 
   initialize: () ->
     @known_tags = []
@@ -87,3 +88,7 @@ class Ideadb.Views.Ideas.IdeaView extends Backbone.Marionette.ItemView
     @comments = ! @comments
     @render()
 
+  addUserFilter: (e) ->
+    e.preventDefault()
+    window.Ideadb.Application.vent.trigger 'add_filter',
+      user: @model.get('user').name

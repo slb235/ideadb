@@ -4,7 +4,8 @@
 
 $dark: #505050;
 $light: #eee;
-$tag_without: #E68580;
+$tag_without: #C66560;
+$tag_user: #6560C6;
 
 .iwell {
   background-color: $light;
@@ -41,7 +42,11 @@ $tag_without: #E68580;
 }
 
 .withouttag {
-  color: $tag_without;
+  background-color: $tag_without;
+}
+
+.user {
+  background-color: $tag_user;
 }
 
 .tag > a:link, .tag > a:hover, .tag > a:visited, .tag > a:active {
@@ -49,7 +54,7 @@ $tag_without: #E68580;
   text-decoration: none;
 }
 
-.tag > a.rm-tag, .tag > a.rm-withouttag {
+.tag > a.rm-tag, .tag > a.rm-withouttag, .tag > a.rm-user {
   color: #ED665F;
   margin-left: 4px;
   padding-left: 4px;
