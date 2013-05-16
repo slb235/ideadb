@@ -20,7 +20,12 @@
   </div>
 
   <div class="options-line">
-    <a class="show-comments" href="#" title="Open Comments"><i class="icon-toggle icon-comment-alt"></i></a>
+    <a class="show-comments" href="#" title="Open Comments">
+      <% if (comments.length > 0) { %>
+        <%= comments.length %>
+      <% } %>
+      <i class="icon-toggle icon-comment-alt"></i>
+    </a>
     <a class="remove" href="#" title="Delete this idea"><i class="icon-trash"></i></a>
   </div>
 

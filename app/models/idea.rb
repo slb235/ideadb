@@ -8,6 +8,6 @@ class Idea < ActiveRecord::Base
   acts_as_taggable
 
   def as_json(options={})
-    super(:include => [:tags, :user])
+    super(:include => [:tags, :user, :comments])
   end  
 end
