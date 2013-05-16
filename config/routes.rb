@@ -3,6 +3,7 @@ Ideadb::Application.routes.draw do
   resources :users
   resources :sessions, :only => [:new, :create, :destroy]
   resources :projects, :only => [:new, :create, :edit, :update] do
+    get 'rename_tag'
     resources :ideas do
       resources :comments
     end

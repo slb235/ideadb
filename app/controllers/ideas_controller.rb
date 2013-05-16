@@ -11,7 +11,6 @@ class IdeasController < ApplicationController
     end
   end
 
-
   def show
     @idea = Idea.find(params[:id])
 
@@ -81,6 +80,7 @@ class IdeasController < ApplicationController
       format.json { head :no_content }
     end
   end
+
 
   private
     def get_tags(params)

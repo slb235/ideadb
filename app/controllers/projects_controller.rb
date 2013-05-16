@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   before_filter :signed_in_user
-  before_filter :correct_user, :only => [:edit, :update, :show]
+  before_filter :correct_user, :only => [:edit, :update, :show, :rename_tag]
 
   def new
     @project = Project.new
@@ -16,6 +16,16 @@ class ProjectsController < ApplicationController
       render 'new'
     end
   end  
+
+  def rename_tag
+    @project.ideas.tagged_with(params[:from]).each do |idea|
+      idea.tag_list.remove params[:from]
+      idea.tag_list.add params[:to]
+      idea.save
+    end
+
+    redirect_to project_ideas_path(@project)
+  end
 
   def edit
     if params[:email]
@@ -40,7 +50,7 @@ class ProjectsController < ApplicationController
 
   private
     def correct_user
-      @project = Project.find_by_id(params[:id])
+      @project = Project.find_by_id(params[:project_id])
       unless @project.users.include? current_user
         flash[:warning] = "This is not ur project"
         redirect_to dashboard_path

@@ -9,6 +9,7 @@ class Ideadb.Views.Ideas.TagView extends Backbone.View
   events: 
     'click .tag-link': 'tagfilter'
     'click .without-tag-link': 'without_tagfilter'
+    'click .rename-tag': 'rename_tag'
     
   initialize: () ->
     @known_tags = []
@@ -30,4 +31,12 @@ class Ideadb.Views.Ideas.TagView extends Backbone.View
     e.preventDefault()
     window.Ideadb.Application.vent.trigger 'add_filter', 
       withouttag: $(e.target).data('tag')
+
+  rename_tag: (e) ->
+    e.preventDefault()
+    new_tag = window.prompt('Rename Tag in', $(e.target).parent().data('tag'))
+    window.location = 'rename_tag?' + $.param
+      from: $(e.target).parent().data('tag')
+      to: new_tag
+
 
