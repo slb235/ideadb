@@ -35,8 +35,9 @@ class Ideadb.Views.Ideas.TagView extends Backbone.View
   rename_tag: (e) ->
     e.preventDefault()
     new_tag = window.prompt('Rename Tag in', $(e.target).parent().data('tag'))
-    window.location = 'rename_tag?' + $.param
-      from: $(e.target).parent().data('tag')
-      to: new_tag
+    if new_tag != null and new_tag.length > 0
+      window.location = 'rename_tag?' + $.param
+        from: $(e.target).parent().data('tag')
+        to: new_tag
 
 

@@ -4,6 +4,7 @@ class Ideadb.Models.Idea extends Backbone.Model
   defaults:
     title: null
     created_at: new Date()
+    comments: []
 
 class Ideadb.Collections.IdeasCollection extends Backbone.Collection
   model: Ideadb.Models.Idea

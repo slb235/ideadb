@@ -18,12 +18,14 @@ class ProjectsController < ApplicationController
   end  
 
   def rename_tag
-    @project.ideas.tagged_with(params[:from]).each do |idea|
-      idea.tag_list.remove params[:from]
-      idea.tag_list.add params[:to]
-      idea.save
+    unless params[:to].empty?
+      @project.ideas.tagged_with(params[:from]).each do |idea|
+        idea.tag_list.remove params[:from]
+        idea.tag_list.add params[:to]
+        idea.save
+      end
     end
-
+    
     redirect_to project_ideas_path(@project)
   end
 
