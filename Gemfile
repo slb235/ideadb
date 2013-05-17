@@ -54,4 +54,4 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 # gem 'ruby-debug'
 
 # To use acts_as_taggable
-gem 'acts-as-taggable-on', '~> 2.3.1'
+gem 'acts-as-taggable-on', '~> 2.4.1'
