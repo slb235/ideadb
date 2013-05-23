@@ -83,3 +83,5 @@ class Ideadb.Views.Ideas.IndexView extends Backbone.Marionette.CompositeView
 
   hide_all_comments: () ->
     $('.icon-comments-alt').trigger 'click'
+
+

@@ -6,12 +6,12 @@
 #= require_tree ./routers
 
 Backbone.Marionette.CollectionView.prototype.addChildView = (item, collection, options) ->
-  filter = @options.filter || @filter
-  if filter and !filter(item)
-    return
-  this.closeEmptyView()
-  ItemView = this.getItemView()
-  @addItemView item, ItemView, options.index
+  #filter = @options.filter || @filter
+  #if filter and !filter(item)
+  #  return
+  #this.closeEmptyView()
+  #ItemView = this.getItemView()
+  #@addItemView item, ItemView, options.index
 
 Backbone.Marionette.CollectionView.prototype.showCollection = () ->
   filter = @options.filter || @filter
@@ -21,7 +21,6 @@ Backbone.Marionette.CollectionView.prototype.showCollection = () ->
   window.collection = @collection
 
   filteredCollection = []
-
   _.each sort(@collection.models), (item, index) ->
     if filter and !filter(item)
       return
@@ -29,20 +28,23 @@ Backbone.Marionette.CollectionView.prototype.showCollection = () ->
     filteredCollection.push(item)
     that.addItemView item, ItemView, index
 
-  flat_tags = _.flatten _.map filteredCollection, (idea) ->
-    _.map idea.attributes.tags, (tag) ->
-      tag.name
 
-  uniq_tags = _.unique flat_tags
-  weighted_tags = {}
+  if @constructor.name == "IndexView"
 
-  _.each flat_tags, (tag) ->
-    if weighted_tags[tag]
-      weighted_tags[tag]++
-    else
-      weighted_tags[tag] = 1
+    flat_tags = _.flatten _.map filteredCollection, (idea) ->
+      _.map idea.attributes.tags, (tag) ->
+        tag.name
 
-  window.Ideadb.Application.vent.trigger 'dynamic_tags', weighted_tags
+    uniq_tags = _.unique flat_tags
+    weighted_tags = {}
+
+    _.each flat_tags, (tag) ->
+      if weighted_tags[tag]
+        weighted_tags[tag]++
+      else
+        weighted_tags[tag] = 1
+
+    window.Ideadb.Application.vent.trigger 'dynamic_tags', weighted_tags
 
 
 
