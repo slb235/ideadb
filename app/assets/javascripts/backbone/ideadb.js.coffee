@@ -19,10 +19,33 @@ Backbone.Marionette.CollectionView.prototype.showCollection = () ->
   that = @
   ItemView = @getItemView()
   window.collection = @collection
+
+  filteredCollection = []
+
   _.each sort(@collection.models), (item, index) ->
     if filter and !filter(item)
       return
+
+    filteredCollection.push(item)
     that.addItemView item, ItemView, index
+
+  flat_tags = _.flatten _.map filteredCollection, (idea) ->
+    _.map idea.attributes.tags, (tag) ->
+      tag.name
+
+  uniq_tags = _.unique flat_tags
+  weighted_tags = {}
+
+  _.each flat_tags, (tag) ->
+    if weighted_tags[tag]
+      weighted_tags[tag]++
+    else
+      weighted_tags[tag] = 1
+
+  window.Ideadb.Application.vent.trigger 'dynamic_tags', weighted_tags
+
+
+
 
 window.Ideadb =
   Models: {}

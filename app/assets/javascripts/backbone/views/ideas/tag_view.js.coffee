@@ -14,7 +14,7 @@ class Ideadb.Views.Ideas.TagView extends Backbone.View
   initialize: () ->
     @known_tags = []
 
-    window.Ideadb.Application.vent.on 'taglist_update', (taglist, wtags) =>
+    window.Ideadb.Application.vent.on 'dynamic_tags', (wtags) =>
       @known_tags = wtags
       @render()
 
