@@ -29,11 +29,7 @@ Backbone.Marionette.CollectionView.prototype.showCollection = () ->
     that.addItemView item, ItemView, index
 
 
-  console.log "constructor_name: #{@constructor.name}"
-
   if @constructor.name == "IndexView"
-    console.log 'creating taglist'
-
     flat_tags = _.flatten _.map filteredCollection, (idea) ->
       _.map idea.attributes.tags, (tag) ->
         tag.name
@@ -47,7 +43,6 @@ Backbone.Marionette.CollectionView.prototype.showCollection = () ->
       else
         weighted_tags[tag] = 1
 
-    console.log "taglist created, found #{weighted_tags.length} tags"
     window.Ideadb.Application.vent.trigger 'dynamic_tags', weighted_tags
 
 
