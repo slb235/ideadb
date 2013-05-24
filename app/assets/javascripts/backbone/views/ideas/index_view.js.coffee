@@ -49,11 +49,29 @@ class Ideadb.Views.Ideas.IndexView extends Backbone.Marionette.CompositeView
       @render()
 
     @collection.on 'add', () =>
-      @render()
+      setTimeout @render, 50
 
   onRender: () =>
     $.livestamp.update()
-    @ui.title.text @collection.models.filter(@filter).length + ' ideas'
+    filteredCollection =  @collection.models.filter(@filter)
+
+    @ui.title.text "#{filteredCollection.length} ideas" 
+
+    flat_tags = _.flatten _.map filteredCollection, (idea) ->
+      _.map idea.attributes.tags, (tag) ->
+        tag.name
+
+    uniq_tags = _.unique flat_tags
+    weighted_tags = {}
+
+    _.each flat_tags, (tag) ->
+      if weighted_tags[tag]
+        weighted_tags[tag]++
+      else
+        weighted_tags[tag] = 1
+
+    window.Ideadb.Application.vent.trigger 'dynamic_tags', weighted_tags
+
 
   filter_changed: () ->
     Ideadb.Application.vent.trigger 'filter_changed', @filter_settings
