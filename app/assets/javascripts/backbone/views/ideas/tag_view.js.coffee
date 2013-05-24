@@ -15,7 +15,6 @@ class Ideadb.Views.Ideas.TagView extends Backbone.View
     @known_tags = []
 
     window.Ideadb.Application.vent.on 'dynamic_tags', (wtags) =>
-      console.log "mhh was ist da los"
       @known_tags = wtags
       @render()
 

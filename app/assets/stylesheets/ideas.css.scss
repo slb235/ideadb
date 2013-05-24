@@ -89,14 +89,21 @@ $tag_user: #6560C6;
 }
 
 .comment > .content {
-  width: 655px;
+  width: 634px;
   float: left;
+  border-left: 1px solid #ccc;
+}
+
+.comment > .action {
+  float: left;
+  width: 20px;
   border-left: 1px solid #ccc;
 }
 
 .idea .content > div {
   padding: 8px;
 }
+
 
 .idea .idea-title {
   background-color: white;
