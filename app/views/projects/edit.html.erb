@@ -14,7 +14,7 @@
 <% @project.users.each do |u| %>
 <li><%= gravatar_for(u, :size => 20) %> <%= u.name %> 
   <% if @project.users.length > 1 %>
-  (<%= link_to 'Remove', "/projects/#{@project.id}/remove_user/#{u.id}", :confirm => 'Not sure if user is important or not.', :method => 'post' %>)
+  (<%= link_to 'Remove', "/projects/#{@project.id}/remove_user/#{u.id}", :confirm => 'Not sure if <%= user.name %> is important or not.', :method => 'post' %>)
   <% end %>
 </li>
 <% end %>
