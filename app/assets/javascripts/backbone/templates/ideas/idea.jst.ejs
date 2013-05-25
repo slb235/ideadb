@@ -16,7 +16,7 @@
 
   <div class="author">
     <img src="<%= get_gravatar(user.email,14) %>">
-    <a href="#" class="user-filter"><span class="author-name"><%= user.name %></span></a> <spann class="authored-at" data-livestamp="<%= created_at %>"></span>
+    <a href="#" class="user-filter"><span class="author-name"><%= user.name %></span></a> <spann class="authored-at"><%= moment(created_at).fromNow() %></span>
   </div>
 
   <div class="options-line">

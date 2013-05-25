@@ -7,15 +7,15 @@
   <%= f.text_field :title %>
 
   <br />
-  <%= f.submit "Save Project", :class => "btn btn-large btn-primary" %>
+  <%= f.submit "Save Project", :class => "btn btn-primary" %>
 <% end %>
 <h2>Collaborators</h2>
 <ul class="unstyled">
 <% @project.users.each do |u| %>
-<li><%= gravatar_for(u, :size => 20) %> <%= u.name %></li>
+<li><%= gravatar_for(u, :size => 20) %> <%= u.name %> (<%= link_to 'Remove', "/projects/#{@project.id}/remove_user/#{u.id}", :confirm => 'Are you sure?', :method => 'post' %>)</li>
 <% end %>
 </ul>
-<a href="#addcollab" data-toggle="modal" role="button" class="btn btn-primary btn-large">Add Collaborator</a>
+<a href="#addcollab" data-toggle="modal" role="button" class="btn btn-primary">Add Collaborator</a>
 <div class="modal hide fade" id="addcollab">
   <form>
     <div class="modal-header">

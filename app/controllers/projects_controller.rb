@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   before_filter :signed_in_user
-  before_filter :correct_user, :only => [:edit, :update, :show, :rename_tag]
+  before_filter :correct_user, :only => [:edit, :update, :show, :rename_tag, :remove_user]
 
   def new
     @project = Project.new
@@ -41,6 +41,11 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def remove_user
+    @project.users.delete(User.find(params[:user_id]))
+    redirect_to edit_project_path(@project)
+  end
+
   def update
     if @project.update_attributes(params[:project])
       flash[:notice] = "Project updated"
@@ -52,6 +57,7 @@ class ProjectsController < ApplicationController
 
   private
     def correct_user
+      params[:project_id] = params[:id] unless params[:project_id]
       @project = Project.find_by_id(params[:project_id])
       unless @project.users.include? current_user
         flash[:warning] = "This is not ur project"

@@ -75,7 +75,6 @@ class Ideadb.Views.Ideas.IdeaView extends Backbone.Marionette.ItemView
       @$('.tag-add-line').hide()
 
   onRender: () ->
-    #$.livestamp.update()
     if @comments
       @comment_collection.fetch()
       @$('.comments').html @comment_view.render().$el

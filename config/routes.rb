@@ -3,6 +3,7 @@ Ideadb::Application.routes.draw do
   resources :users
   resources :sessions, :only => [:new, :create, :destroy]
   resources :projects, :only => [:new, :create, :edit, :update] do
+    post 'remove_user/:user_id', :action => 'remove_user'
     get 'rename_tag'
     resources :ideas do
       resources :comments
