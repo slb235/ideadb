@@ -12,7 +12,11 @@
 <h2>Collaborators</h2>
 <ul class="unstyled">
 <% @project.users.each do |u| %>
-<li><%= gravatar_for(u, :size => 20) %> <%= u.name %> (<%= link_to 'Remove', "/projects/#{@project.id}/remove_user/#{u.id}", :confirm => 'Are you sure?', :method => 'post' %>)</li>
+<li><%= gravatar_for(u, :size => 20) %> <%= u.name %> 
+  <% if @project.users.length > 1 %>
+  (<%= link_to 'Remove', "/projects/#{@project.id}/remove_user/#{u.id}", :confirm => 'Not sure if user is important or not.', :method => 'post' %>)
+  <% end %>
+</li>
 <% end %>
 </ul>
 <a href="#addcollab" data-toggle="modal" role="button" class="btn btn-primary">Add Collaborator</a>
