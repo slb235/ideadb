@@ -10,7 +10,7 @@ class Ideadb.Views.Ideas.CommentView extends Backbone.Marionette.ItemView
 
   deleteComment: (e) ->
     e.preventDefault()
-    @model.destroy()
-
+    if window.confirm("My God, it's the future. My parents, my comment, my girlfriend. I'll never see any of them again.") == true
+      @model.destroy()
 
 
