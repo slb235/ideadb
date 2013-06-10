@@ -5,7 +5,7 @@ class Ideadb.Views.Ideas.IdeaView extends Backbone.Marionette.ItemView
   className: "idea"
 
   events: 
-    'click .idea-title': 'makeTitleEditable'
+    'dblclick .idea-title': 'makeTitleEditable'
     'click .remove': 'showRemoveModal'
     'click .remove-idea': 'removeIdea'
     'click .rm-tag': 'removeTag'
