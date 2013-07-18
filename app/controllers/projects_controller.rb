@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   before_filter :signed_in_user
-  before_filter :correct_user, :only => [:edit, :update, :show, :rename_tag, :remove_user]
+  before_filter :correct_user, :only => [:edit, :update, :show, :rename_tag, :remove_user, :edit_style, :update_style]
 
   def new
     @project = Project.new
@@ -8,8 +8,9 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new(params[:project])
-    @project.users << current_user
     if @project.save
+      @pu = ProjectUser.new :project => @project, :user => current_user
+      @pu.save!
       flash[:notice] = "Project created successful"
       redirect_to dashboard_path
     else
@@ -40,6 +41,20 @@ class ProjectsController < ApplicationController
       end
     end
   end
+
+  def edit_style
+    @pu = @project.project_users.where(:user_id => current_user.id).first()
+  end
+
+  def update_style
+    if ProjectUser.where(:user_id => current_user, :project_id => @project).update_all(params[:pu])
+      flash[:notice] = "Project style updated"
+      redirect_to dashboard_path
+    else
+      render 'edit_style'
+    end    
+  end
+
 
   def remove_user
     @project.users.delete(User.find(params[:user_id]))

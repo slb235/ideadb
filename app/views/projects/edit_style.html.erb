@@ -1,0 +1,20 @@
+<% provide(:title, 'Edit Project Style') %>
+<h2>Edit Project Style</h2>
+<%= form_for @pu, :as => :pu, :url => project_update_style_path(@project) do |f| %>
+  <%= render 'shared/error_messages', :object => f.object %>
+
+  <%= f.label :body_bg, 'Background' %>
+  <%= f.text_field :body_bg, :class => 'input-xxlarge' %>
+
+  <%= f.label :tag_bg, 'Tag Background Color' %>
+  <%= f.text_field :tag_bg, :class => 'input-large' %>
+
+  <%= f.label :tag_color, 'Tag Color' %>
+  <%= f.text_field :tag_color, :class => 'input-large' %>
+
+  <%= f.label :link_color, 'Link Color' %>
+  <%= f.text_field :link_color, :class => 'input-large' %>  
+
+  <br />
+  <%= f.submit "Save Project Style", :class => "btn btn-primary" %>
+<% end %>

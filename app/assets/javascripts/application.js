@@ -29,6 +29,30 @@ window.get_gravatar = function(email, size) {
 
 window.converter = new Markdown.Converter();
 
+window.apply_style = function(pu) {
+  pu = pu[0];
+  
+  console.log(pu);
+  if(pu.body_bg.length > 0)
+  {
+    $.stylesheet('body', 'background', pu.body_bg);
+  }
+  if(pu.link_color.length > 0)
+  {
+    $.stylesheet('a', 'color', pu.link_color)
+  }
+  if(pu.tag_bg.length > 0)
+  {
+    $.stylesheet('.iwell > h3, .tag', 'background-color', pu.tag_bg)
+    $.stylesheet('.iwell', 'border-color', pu.tag_bg)    
+  }
+  if(pu.tag_color.length > 0)
+  {
+    $.stylesheet('.iwell > h3, .tag', 'color', pu.tag_color)
+  }
+}
+  
+
 /* =============================================================
  * bootstrap-typeahead.js v2.3.2
  * http://twitter.github.com/bootstrap/javascript.html#typeahead

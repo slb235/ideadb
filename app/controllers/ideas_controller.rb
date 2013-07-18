@@ -4,6 +4,7 @@ class IdeasController < ApplicationController
   def index
     @project = Project.find_by_id(params[:project_id])
     @ideas = @project.ideas.all :order => :id
+    @pu = ProjectUser.where(:user_id => current_user, :project_id => @project)
 
     respond_to do |format|
       format.html # index.html.erb

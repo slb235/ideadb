@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130529203738) do
+ActiveRecord::Schema.define(:version => 20130718152639) do
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
@@ -38,6 +38,10 @@ ActiveRecord::Schema.define(:version => 20130529203738) do
   create_table "projects_users", :id => false, :force => true do |t|
     t.integer "project_id"
     t.integer "user_id"
+    t.string  "body_bg"
+    t.string  "tag_bg"
+    t.string  "tag_color"
+    t.string  "link_color"
   end
 
   add_index "projects_users", ["project_id", "user_id"], :name => "index_projects_users_on_project_id_and_user_id"
