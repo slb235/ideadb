@@ -15,18 +15,23 @@ Backbone.Marionette.CollectionView.prototype.addChildView = (item, collection, o
 
 Backbone.Marionette.CollectionView.prototype.showCollection = () ->
   filter = @options.filter || @filter
+  @pre_filter() if @pre_filter
   sort = @options.sort || @sort || (collection) -> collection
   that = @
   ItemView = @getItemView()
   window.collection = @collection
 
   filteredCollection = []
+  counter = 0
   _.each sort(@collection.models), (item, index) ->
     if filter and !filter(item)
       return
 
     filteredCollection.push(item)
     that.addItemView item, ItemView, index
+
+  @after_filter() if @after_filter
+
 
 
 

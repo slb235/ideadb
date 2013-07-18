@@ -4,12 +4,14 @@ class Ideadb.Views.Ideas.SortingView extends Backbone.Marionette.ItemView
   events:
     'click .sort': 'sort'
     'click .sortdesc': 'sortdesc'
-    'change select': 'sortselect'
+    'change select#order': 'sortselect'
+    'change select#limit': 'limitselect'
 
   ui:
     'icon_sort': '.icon-chevron-down'
     'icon_sort_desc': '.icon-chevron-up'
-    'sorting': 'select'
+    'sorting': 'select#order'
+    'limit': 'select#limit'
 
   initialize: () ->
     @reverse = true;
@@ -36,6 +38,10 @@ class Ideadb.Views.Ideas.SortingView extends Backbone.Marionette.ItemView
     @reverse = true
     Ideadb.Application.vent.trigger 'sorting_changed'
 
+  onRender: (e) =>
+    limit = localStorage.getItem 'limit'
+    if limit
+      @ui.limit.val limit
 
   sortdesc: (e) =>
     e.preventDefault()
@@ -46,3 +52,9 @@ class Ideadb.Views.Ideas.SortingView extends Backbone.Marionette.ItemView
 
   sortselect: (e) =>
     Ideadb.Application.vent.trigger 'sorting_changed'    
+
+  limitselect: (e) =>
+    localStorage.setItem 'limit', parseInt(@ui.limit.val())
+    Ideadb.Application.vent.trigger 'limit_changed'
+    
+

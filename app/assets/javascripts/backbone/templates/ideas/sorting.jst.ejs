@@ -4,10 +4,20 @@
     <span class="sortingbtn">
       <a href="#" class="sort"><i class="icon-chevron-down icon-sorting active"></i></a><a href="#" class="sortdesc"><i class="icon-chevron-up icon-sorting"></i></a>
     </span>  
-    <select>
+    <select id='order'>
       <option value='date'>Date</option>  
       <option value='author'>Author</option>
       <option value='shuffle'>Shuffle</option>
+    </select>
+    <br>
+    <label>Anzeigelimit</label>
+    <select id='limit'>
+      <option value='25'>25</option>
+      <option value='50' selected>50</option>
+      <option value='100'>100</option>
+      <option value='250'>250</option>
+      <option value='500'>500</option>
+      <option value='10000'>All my ideas</option>
     </select>
   </div>
 </div>

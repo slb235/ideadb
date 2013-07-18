@@ -48,14 +48,20 @@ class Ideadb.Views.Ideas.IndexView extends Backbone.Marionette.CompositeView
     Ideadb.Application.vent.on 'sorting_changed', () =>
       @render()
 
+    Ideadb.Application.vent.on 'limit_changed', () =>
+      @render()
+
     @collection.on 'add', () =>
       setTimeout @render, 50
 
   onRender: () =>
     $.livestamp.update()
-    filteredCollection =  @collection.models.filter(@filter)
+    filteredCollection = @collection.models.filter(@filter)
 
-    @ui.title.text "#{filteredCollection.length} ideas" 
+    if @limit and @limit < filteredCollection.length
+      @ui.title.text "#{@limit} of #{filteredCollection.length} ideas" 
+    else
+      @ui.title.text "#{filteredCollection.length} ideas" 
 
     flat_tags = _.flatten _.map filteredCollection, (idea) ->
       _.map idea.attributes.tags, (tag) ->
@@ -77,12 +83,19 @@ class Ideadb.Views.Ideas.IndexView extends Backbone.Marionette.CompositeView
     Ideadb.Application.vent.trigger 'filter_changed', @filter_settings
     @render() 
 
+  pre_filter: () ->
+    @limit = parseInt(localStorage.getItem('limit')) || 50
+    @counter = 0
+
+  after_filter: () ->
+    @counter = undefined
+
   filter: (item) =>
     item_good = true
 
     if @filter_settings.title and @filter_settings.title.length
       item_good = false if item.get('title').toLowerCase().indexOf(@filter_settings.title.toLowerCase()) == -1
-        
+    
     if @filter_settings.tag and @filter_settings.tag.length
       _.each @filter_settings.tag, (tag) ->
         item_good = false unless _.contains (item.attributes.tags.map (t) -> t.name), tag
@@ -93,6 +106,11 @@ class Ideadb.Views.Ideas.IndexView extends Backbone.Marionette.CompositeView
 
     if @filter_settings.user and @filter_settings.user.length
       item_good = false unless _.contains @filter_settings.user, item.attributes.user.name
+
+    if @counter != undefined
+      if item_good
+        if ++@counter > @limit
+          item_good = false            
 
     return item_good
 
