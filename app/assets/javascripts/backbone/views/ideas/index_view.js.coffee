@@ -9,11 +9,16 @@ class Ideadb.Views.Ideas.IndexView extends Backbone.Marionette.CompositeView
   events:
     'click .show_all': 'show_all_comments'
     'click .hide_all': 'hide_all_comments'
+    'click .sort': 'sort_change'
+    'change select#limit': 'limitselect'    
 
   ui:
     'title': 'h3'
+    'limit': 'select#limit'   
+    'sort_buttons': 'i.icon-sorting'
 
   initialize: () ->
+    @reverse = true;
     Ideadb.Application.vent.on 'add_filter', (new_filter) =>
       if new_filter.tag
         @filter_settings.tag = [] unless @filter_settings.tag
@@ -54,6 +59,8 @@ class Ideadb.Views.Ideas.IndexView extends Backbone.Marionette.CompositeView
     @collection.on 'add', () =>
       setTimeout @render, 50
 
+    @order = 'date'
+
   onRender: () =>
     $.livestamp.update()
     filteredCollection = @collection.models.filter(@filter)
@@ -78,6 +85,14 @@ class Ideadb.Views.Ideas.IndexView extends Backbone.Marionette.CompositeView
 
     window.Ideadb.Application.vent.trigger 'dynamic_tags', weighted_tags
 
+    limit = localStorage.getItem 'limit'
+    if limit
+      @ui.limit.val limit  
+
+    highlight = () =>
+      $("[data-sort=#{@order}]").addClass('active')
+
+    setTimeout highlight, 0
 
   filter_changed: () ->
     Ideadb.Application.vent.trigger 'filter_changed', @filter_settings
@@ -120,4 +135,33 @@ class Ideadb.Views.Ideas.IndexView extends Backbone.Marionette.CompositeView
   hide_all_comments: () ->
     $('.icon-comments-alt').trigger 'click'
 
+  sort: (collection) =>
+    collection = _.clone collection
 
+    switch @order
+      when 'date' then collection = _.sortBy collection, 'created_at'
+      when 'author' then collection = _.sortBy collection, (item) -> item.get('user').name
+      when 'shuffle' then collection = _.shuffle collection
+
+    if @reverse
+      return collection.reverse()
+    else
+      return collection
+
+
+  sort_change: (e) =>
+    e.preventDefault()
+    window.e = e
+    new_sort = $(e.target).data('sort')
+
+    if @order == new_sort
+      @reverse = !@reverse
+    else
+      @order = new_sort
+      @reverse = false
+
+    Ideadb.Application.vent.trigger 'sorting_changed'
+
+  limitselect: (e) =>
+    localStorage.setItem 'limit', parseInt(@ui.limit.val())
+    Ideadb.Application.vent.trigger 'limit_changed'

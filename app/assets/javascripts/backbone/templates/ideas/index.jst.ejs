@@ -1,7 +1,23 @@
-
 <div class="iwell">
   <h3>Ideas</h3>
   <div class="content">
+    <div class="row-fluid">
+      <div class="span8">
+        <a href="#" class="sort"><i class="icon-calendar icon-sorting" data-sort="date"></i></a>
+        <a href="#" class="sort"><i class="icon-group icon-sorting" data-sort="author"></i></a>
+        <a href="#" class="sort"><i class="icon-dashboard icon-sorting" data-sort="shuffle"></i></a>
+      </div>
+      <div class="span4" style="text-align: right;">
+        <select id='limit' class='input-medium'>
+          <option value='25'>25</option>
+          <option value='50' selected>50</option>
+          <option value='100'>100</option>
+          <option value='250'>250</option>
+          <option value='500'>500</option>
+          <option value='10000'>All my ideas</option>
+        </select>      
+      </div>
+    </div>
     <p><a class="show_all" href="#">show all comments</a>, <a class="hide_all" href="#">hide all comments</a></p>
     <div id="ideas">
     </div>

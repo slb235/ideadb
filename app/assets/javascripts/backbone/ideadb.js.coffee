@@ -59,5 +59,4 @@ window.Ideadb.Application.addRegions
   addRegion: "#addidea"
   tagRegion: "#tagfilter"
   filterRegion: "#filter"
-  sortingRegion: "#sorting"
   
