@@ -32,21 +32,20 @@ window.converter = new Markdown.Converter();
 window.apply_style = function(pu) {
   pu = pu[0];
   
-  console.log(pu);
-  if(pu.body_bg.length > 0)
+  if(pu.body_bg && pu.body_bg.length > 0)
   {
     $.stylesheet('body', 'background', pu.body_bg);
   }
-  if(pu.link_color.length > 0)
+  if(pu.link_color && pu.link_color.length > 0)
   {
     $.stylesheet('a', 'color', pu.link_color)
   }
-  if(pu.tag_bg.length > 0)
+  if(pu.tag_bg && pu.tag_bg.length > 0)
   {
     $.stylesheet('.iwell > h3, .tag', 'background-color', pu.tag_bg)
     $.stylesheet('.iwell', 'border-color', pu.tag_bg)    
   }
-  if(pu.tag_color.length > 0)
+  if(pu.tag_color && pu.tag_color.length > 0)
   {
     $.stylesheet('.iwell > h3, .tag, .tag > a:link, .tag', 'color', pu.tag_color)
   }
