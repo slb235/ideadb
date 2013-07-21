@@ -17,3 +17,8 @@ body {
 .center h1 {
   margin-bottom: 10px;
 }
+
+.brand .small {
+  font-size: 0.75em;
+  color: #BBBBBB;
+}

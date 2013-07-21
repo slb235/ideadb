@@ -48,7 +48,7 @@ window.apply_style = function(pu) {
   }
   if(pu.tag_color.length > 0)
   {
-    $.stylesheet('.iwell > h3, .tag', 'color', pu.tag_color)
+    $.stylesheet('.iwell > h3, .tag, .tag > a:link, .tag', 'color', pu.tag_color)
   }
 }
   
