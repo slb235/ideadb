@@ -11,12 +11,11 @@ class Ideadb.Routers.IdeasRouter extends Backbone.Router
     @ideas.reset options.ideas
 
 
-  routes:
-    "new"      : "newIdea"
-    "index"    : "index"
-    ".*"        : "index"
+    #routes:
+    #"index"    : "index"
+    #".*"       : "index"
 
-  index: ->
+    #index: ->
     @view = new Ideadb.Views.Ideas.IndexView
       collection: @ideas
 

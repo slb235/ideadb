@@ -104,6 +104,13 @@ $tag_user: #6560C6;
   padding: 8px;
 }
 
+.anchor {
+  display: block; 
+  position: relative; 
+  top: -51px; 
+  visibility: hidden;
+}
+
 
 .idea .idea-title {
   background-color: white;
@@ -112,7 +119,6 @@ $tag_user: #6560C6;
 }
 
 .idea .tag-line {
-  text-align: right;
   padding-top: 0px !important;
   padding-bottom: 4px !important;
 }

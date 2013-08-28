@@ -1,10 +1,15 @@
 <div class="content">
   <div class="tag-line">
-    <% _.each(tags, function(tag) { %>
-      <span class="tag"><%= tag.name %><a href="#" class="rm-tag" data-tag-id="<%= tag.id %>">x</a></span> 
-    <% }) %>
-    <span class="tag"><a href="#" class="show-tag-add add-tag">+</a></span> 
+    <div style="float: left; width: 100px; font-size: 0.7em"><a class="anchor" id="<%= id %>"></a><a href="#<%= id %>">#<%= id %></a></div>
+    <div style="float: right; width: 600px; text-align: right;">
+      <% _.each(tags, function(tag) { %>
+        <span class="tag"><%= tag.name %><a href="#" class="rm-tag" data-tag-id="<%= tag.id %>">x</a></span> 
+      <% }) %>
+      <span class="tag"><a href="#" class="show-tag-add add-tag">+</a></span> 
+    </div>
+
   </div>
+  <div class="clearfix"></div>
 
   <div class="tag-add-line" style="display: none">
     <input type="text" class="tag-input" placeholder="Enter new tags here...">
