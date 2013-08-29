@@ -1,6 +1,11 @@
 <div class="content">
   <div class="tag-line">
-    <div style="float: left; width: 100px; font-size: 0.7em"><a class="anchor" href="#<%= id %>">#<%= id %></a></div>
+    
+    <div style="float: left; width: 100px; font-size: 0.7em">
+      <% if(!(typeof id === 'undefined')) { %>
+        <a class="anchor" href="#<%= id %>">#<%= id %></a>
+      <% } %>
+    </div>
     <div style="float: right; width: 600px; text-align: right;">
       <% _.each(tags, function(tag) { %>
         <span class="tag"><%= tag.name %><a href="#" class="rm-tag" data-tag-id="<%= tag.id %>">x</a></span> 
