@@ -29,6 +29,13 @@ window.get_gravatar = function(email, size) {
 
 window.converter = new Markdown.Converter();
 
+window.comment_converter = function(text) {
+  return text.replace(/#\d+/g, function(a) {
+    return "<a class='anchor' href='"+ a +"'>"+ a +"</a>";
+  });  
+}
+
+
 window.apply_style = function(pu) {
   pu = pu[0];
   

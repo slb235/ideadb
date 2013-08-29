@@ -94,6 +94,9 @@ class Ideadb.Views.Ideas.IndexView extends Backbone.Marionette.CompositeView
 
     setTimeout highlight, 0
 
+    if filteredCollection.length == 1
+      $('.icon-toggle.icon-comment-alt').trigger('click')
+
   filter_changed: () ->
     Ideadb.Application.vent.trigger 'filter_changed', @filter_settings
     @render() 

@@ -31,7 +31,7 @@ class Ideadb.Views.Ideas.IdeaView extends Backbone.Marionette.ItemView
 
   filterForIdea: (e) ->
     e.preventDefault()
-    $('#search_query').val( "##{@model.id}" )
+    $('#search_query').val( $(e.target).attr('href') )
     $('#search_query').trigger('keyup')
     window.location.hash = "##{@model.id}"
 
