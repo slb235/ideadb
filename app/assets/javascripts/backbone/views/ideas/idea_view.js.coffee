@@ -11,6 +11,7 @@ class Ideadb.Views.Ideas.IdeaView extends Backbone.Marionette.ItemView
     'click .rm-tag': 'removeTag'
     'click .show-tag-add': 'showTagAdd'
     'click .show-comments': 'showComments'
+    'click .anchor': 'filterForIdea'
     'blur .idea-title': 'finishedEditing'
     'keypress .tag-input': 'onTagKeyPress'
     'click .user-filter': 'addUserFilter'
@@ -27,6 +28,12 @@ class Ideadb.Views.Ideas.IdeaView extends Backbone.Marionette.ItemView
       collection: @comment_collection
 
     @comments = false
+
+  filterForIdea: (e) ->
+    e.preventDefault()
+    $('#search_query').val( "##{@model.id}" )
+    $('#search_query').trigger('keyup')
+    window.location.hash = "##{@model.id}"
 
   makeTitleEditable: (e) ->
     e.preventDefault()

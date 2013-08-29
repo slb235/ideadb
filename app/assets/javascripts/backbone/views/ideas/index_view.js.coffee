@@ -109,7 +109,11 @@ class Ideadb.Views.Ideas.IndexView extends Backbone.Marionette.CompositeView
     item_good = true
 
     if @filter_settings.title and @filter_settings.title.length
-      item_good = false if item.get('title').toLowerCase().indexOf(@filter_settings.title.toLowerCase()) == -1
+      match = @filter_settings.title.match(/#(\d+)/)
+      if match
+        item_good = false if item.get('id') != parseInt(match[1])
+      else
+        item_good = false if item.get('title').toLowerCase().indexOf(@filter_settings.title.toLowerCase()) == -1
     
     if @filter_settings.tag and @filter_settings.tag.length
       _.each @filter_settings.tag, (tag) ->

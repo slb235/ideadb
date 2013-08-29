@@ -11,11 +11,6 @@ class Ideadb.Routers.IdeasRouter extends Backbone.Router
     @ideas.reset options.ideas
 
 
-    #routes:
-    #"index"    : "index"
-    #".*"       : "index"
-
-    #index: ->
     @view = new Ideadb.Views.Ideas.IndexView
       collection: @ideas
 
@@ -23,3 +18,9 @@ class Ideadb.Routers.IdeasRouter extends Backbone.Router
     window.Ideadb.Application.addRegion.show(@addView)
     window.Ideadb.Application.tagRegion.show(@tagView)
     window.Ideadb.Application.filterRegion.show(@filterView)
+
+    if window.location.hash
+      match = window.location.hash.match /#\d+/
+      if match
+        $('#search_query').val(window.location.hash)
+        $('#search_query').trigger('keyup')
