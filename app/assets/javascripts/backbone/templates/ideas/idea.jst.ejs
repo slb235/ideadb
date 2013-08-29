@@ -20,8 +20,12 @@
     <input type="text" class="tag-input" placeholder="Enter new tags here...">
   </div>
 
-  <div class="idea-title">
+  <div class="idea-title view">
     <%= converter.makeHtml(title) %>
+  </div>
+
+  <div class="idea-title edit" style="display: none"> 
+    <textarea rows="8"><%= title %></textarea>
   </div>
 
   <div class="author">

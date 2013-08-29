@@ -5,14 +5,14 @@ class Ideadb.Views.Ideas.IdeaView extends Backbone.Marionette.ItemView
   className: "idea"
 
   events: 
-    'dblclick .idea-title': 'makeTitleEditable'
+    'dblclick .idea-title.view': 'makeTitleEditable'
     'click .remove': 'showRemoveModal'
     'click .remove-idea': 'removeIdea'
     'click .rm-tag': 'removeTag'
     'click .show-tag-add': 'showTagAdd'
     'click .show-comments': 'showComments'
     'click .anchor': 'filterForIdea'
-    'blur .idea-title': 'finishedEditing'
+    'blur .idea-title.edit textarea': 'finishedEditing'
     'keypress .tag-input': 'onTagKeyPress'
     'click .user-filter': 'addUserFilter'
 
@@ -37,13 +37,17 @@ class Ideadb.Views.Ideas.IdeaView extends Backbone.Marionette.ItemView
 
   makeTitleEditable: (e) ->
     e.preventDefault()
-    @$('.idea-title').attr 'contenteditable', 'true'
-    @$('.idea-title').html @model.get('title')
+    #@$('.idea-title').attr 'contenteditable', 'true'
+    #@$('.idea-title').html @model.get('title')
+    @$('.idea-title.view').hide()
+    @$('.idea-title.edit').show()
+    @$('.idea-title.edit textarea').focus()
     window.Ideadb.Application.vent.trigger 'lock_updates', true
 
   finishedEditing: () ->
-    @$('.idea-title').attr 'contenteditable', 'false'
-    @model.attributes.title = @$('.idea-title').html()
+    console.log 'finish editing'
+    #@$('.idea-title').attr 'contenteditable', 'false'
+    @model.attributes.title = @$('.idea-title.edit textarea').val()
     @model.save()
     @render()
     window.Ideadb.Application.vent.trigger 'lock_updates', false
