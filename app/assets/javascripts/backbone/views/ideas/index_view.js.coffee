@@ -56,6 +56,9 @@ class Ideadb.Views.Ideas.IndexView extends Backbone.Marionette.CompositeView
     Ideadb.Application.vent.on 'limit_changed', () =>
       @render()
 
+    Ideadb.Application.vent.on 'taglist_update', () =>
+      @render()
+
     @collection.on 'add', () =>
       setTimeout @render, 50
 
