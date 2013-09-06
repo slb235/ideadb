@@ -7,8 +7,13 @@ class Ideadb.Views.Ideas.AddView extends Backbone.View
   className: "iwell"
 
   events:
+    'keydown #new_idea_tags': 'updatePopover'
     'keypress #new_idea_tags': 'onTagKeyPress'
     'click .rm-tag': 'onTagRemove'
+    'focus #new_idea_title': 'showIdeaPopover'
+    'blur #new_idea_title': 'hideIdeaPopover'
+    'focus #new_idea_tags': 'showTagsPopover'
+    'blur #new_idea_tags': 'hideTagsPopover'
 
   initialize: () ->
     @known_tags = []
@@ -16,6 +21,26 @@ class Ideadb.Views.Ideas.AddView extends Backbone.View
 
     window.Ideadb.Application.vent.on 'taglist_update', (taglist) =>
       @known_tags = taglist
+
+  showIdeaPopover: () ->
+    @.$('#new_idea_title').popover
+      title: 'Describe your idea'
+      content: '[Press TAB]'
+    #@.$('#new_idea_title').popover 'show'
+
+
+  hideIdeaPopover: () ->
+    @.$('#new_idea_title').popover 'hide'
+
+  showTagsPopover: () ->
+    @.$('#new_idea_tags').popover
+      title: 'Add tags'
+      content: 'Add Tags or [Press Enter]'
+    @.$('#new_idea_tags').popover 'show'
+
+
+  hideTagsPopover: () ->
+    @.$('#new_idea_tags').popover 'hide'
 
   render: () ->
     idea_title = ''
@@ -29,8 +54,8 @@ class Ideadb.Views.Ideas.AddView extends Backbone.View
         return @known_tags.filter (t) -> t.toLowerCase().indexOf(query.toLowerCase()) != -1
 
   onTagKeyPress: (e) ->
+    val = @.$('#new_idea_tags').val().trim()
     if e.keyCode == 13
-      val = @.$('#new_idea_tags').val().trim()
       if val.length
         unless _.contains @add_tags, val
           @add_tags.push val
@@ -38,6 +63,19 @@ class Ideadb.Views.Ideas.AddView extends Backbone.View
           @.$('#new_idea_tags').focus()
       else
         @onAddIdea()
+
+  updatePopover: () ->
+    val = @.$('#new_idea_tags').val().trim()
+    if val.length
+      if @.$('#new_idea_tags').data('popover').options.content != '[Press Enter]'
+        @.$('#new_idea_tags').data('popover').options.content = '[Press Enter]'
+        @.$('#new_idea_tags').popover 'show'
+    else
+      if @.$('#new_idea_tags').data('popover').options.content != 'Add Tags or [Press Enter]'
+        @.$('#new_idea_tags').data('popover').options.content = 'Add Tags or [Press Enter]'
+        @.$('#new_idea_tags').popover 'show'      
+
+
 
   onTagRemove: (e) ->
     e.preventDefault()
