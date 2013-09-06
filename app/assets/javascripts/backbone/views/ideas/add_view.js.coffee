@@ -66,16 +66,9 @@ class Ideadb.Views.Ideas.AddView extends Backbone.View
 
   updatePopover: () ->
     val = @.$('#new_idea_tags').val().trim()
-    if val.length
-      if @.$('#new_idea_tags').data('popover').options.content != '[Press Enter]'
-        @.$('#new_idea_tags').data('popover').options.content = '[Press Enter]'
-        @.$('#new_idea_tags').popover 'show'
-    else
-      if @.$('#new_idea_tags').data('popover').options.content != 'Add Tags or [Press Enter]'
-        @.$('#new_idea_tags').data('popover').options.content = 'Add Tags or [Press Enter]'
-        @.$('#new_idea_tags').popover 'show'      
-
-
+    if @.$('#new_idea_tags').data('popover').options.content != '[Press Enter]'
+      @.$('#new_idea_tags').data('popover').options.content = '[Press Enter]'
+      @.$('#new_idea_tags').popover 'show'
 
   onTagRemove: (e) ->
     e.preventDefault()
