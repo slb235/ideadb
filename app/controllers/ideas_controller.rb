@@ -5,6 +5,7 @@ class IdeasController < ApplicationController
     @project = Project.find_by_id(params[:project_id])
     @ideas = @project.ideas.all :order => :id
     @pu = ProjectUser.where(:user_id => current_user, :project_id => @project)
+    @activity = Activity.where(:project_id => @project.id).order('created_at DESC').limit(25)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -42,10 +43,13 @@ class IdeasController < ApplicationController
 
     @idea.user = current_user
 
+
+
     get_tags params
 
     respond_to do |format|
       if @idea.save
+        Activity.create! :user => current_user, :project => @idea.project, :idea => @idea, :action => 'created'
         format.html { redirect_to project_idea_path(@idea.project, @idea), :notice => 'Idea was successfully created.' }
         format.json { render :json => @idea, :status => :created, :location => project_idea_path(@idea.project, @idea) }
       else
@@ -57,6 +61,7 @@ class IdeasController < ApplicationController
 
   def update
     @idea = Idea.find(params[:id])
+    Activity.create! :user => current_user, :project => @idea.project, :idea => @idea, :action => 'modified'
 
     respond_to do |format|
       @idea.title = params[:idea][:title]
@@ -74,6 +79,7 @@ class IdeasController < ApplicationController
   def destroy
     @idea = Idea.find(params[:id])
     @project = @idea.project
+    Activity.create! :user => current_user, :project => @idea.project, :idea => @idea, :action => 'destroyed'
     @idea.destroy
 
     respond_to do |format|

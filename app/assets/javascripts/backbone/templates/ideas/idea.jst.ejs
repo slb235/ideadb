@@ -8,7 +8,7 @@
     </div>
     <div style="float: right; width: 600px; text-align: right;">
       <% _.each(tags, function(tag) { %>
-        <span class="tag"><%= tag.name %><a href="#" class="rm-tag" data-tag-id="<%= tag.id %>">x</a></span> 
+        <span class="tag"><a href="#" class="tag-link" data-tag="<%= tag.name %>"><%= tag.name %></a> <a href="#" class="rm-tag" data-tag-id="<%= tag.id %>">x</a></span> 
       <% }) %>
       <span class="tag"><a href="#" class="show-tag-add add-tag">+</a></span> 
     </div>

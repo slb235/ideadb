@@ -15,6 +15,7 @@ class Ideadb.Views.Ideas.IdeaView extends Backbone.Marionette.ItemView
     'blur .idea-title.edit textarea': 'finishedEditing'
     'keypress .tag-input': 'onTagKeyPress'
     'click .user-filter': 'addUserFilter'
+    'click .tag-link': 'tagfilter'    
 
   initialize: () ->
     @known_tags = []
@@ -28,6 +29,13 @@ class Ideadb.Views.Ideas.IdeaView extends Backbone.Marionette.ItemView
       collection: @comment_collection
 
     @comments = false
+
+
+  tagfilter: (e) ->
+    e.preventDefault()
+    window.Ideadb.Application.vent.trigger 'add_filter', 
+      tag: $(e.target).data('tag')
+          
 
   filterForIdea: (e) ->
     e.preventDefault()

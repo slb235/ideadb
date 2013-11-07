@@ -47,6 +47,8 @@ class CommentsController < ApplicationController
     @comment.idea = @idea
     @comment.user = current_user
 
+    Activity.create! :user => current_user, :project => @idea.project, :idea => @idea, :action => 'commented on'
+
     respond_to do |format|
       if @comment.save
         format.html { redirect_to @comment, :notice => 'Comment was successfully created.' }
@@ -78,6 +80,7 @@ class CommentsController < ApplicationController
   # DELETE /comments/1.json
   def destroy
     @comment = Comment.find(params[:id])
+    Activity.create! :user => current_user, :project => @comment.idea.project, :idea => @comment.idea, :action => 'deleted comment on'
     @comment.destroy
 
     respond_to do |format|

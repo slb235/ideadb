@@ -54,9 +54,39 @@ window.apply_style = function(pu) {
   }
   if(pu.tag_color && pu.tag_color.length > 0)
   {
-    $.stylesheet('.iwell > h3, .tag, .tag > a:link, .tag', 'color', pu.tag_color)
+    $.stylesheet('.iwell > h3, .tag, .tag > a:link, .tag > a:visited, .tag > a:active, .tag', 'color', pu.tag_color)
   }
 }
+
+// This is so bad, manage activites here
+jQuery(function($){
+  
+  $('.more').on('click', function(e){
+    e.preventDefault();
+    $this = $(this);
+    if ($this.text() == 'more') {
+      $this.text('less');
+      $('#activity .show_more').show();
+    }
+    else {
+      $this.text('more');
+      $('#activity .show_more').hide();
+    }
+  })
+
+  $('.to-idea').on('click', function(e) {
+    e.preventDefault()
+    $('#search_query').val( $(e.target).attr('href') )
+    $('#search_query').trigger('keyup')
+  });
+
+  $('.to-user').on('click', function(e) {
+    e.preventDefault();
+    window.Ideadb.Application.vent.trigger('add_filter', { user: $(this).data('user') });
+  });  
+
+
+});
   
 
 /* =============================================================

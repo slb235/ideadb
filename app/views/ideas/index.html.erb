@@ -8,9 +8,29 @@
     <div id="addidea">
     </div>
     <div id="filter">
-    </div>    
-    <div id="sorting">
-    </div>    
+    </div>
+    <div id="activity">
+      <div class="iwell">
+        <h3>Activity</h3>
+        <div class="content">
+          <% @activity.each_with_index do |a, i| %>
+            <% if i > 4 %>
+              <div class="show_more" style="display: none">
+            <% end %>
+            <a class='to-user' data-user='<%= a.user.name %>' href="#"><%= a.user.name %></a>
+            <%= " #{a.action} " %>
+            <a class='to-idea' href="#<%= a.idea.id %>">#<%= a.idea.id %></a>
+            <span class="authored-at" data-livestamp="<%= a.created_at.to_i %>"></span>
+            <br>
+            <% if i > 4 %>
+              </div>
+            <% end %>            
+          <% end %>
+          <a href='#' class='more' style="float: right">more</a>
+          <div class='clearfix'></div>
+        </div>
+      </div>  
+    </div>
     <div id="tagfilter">
     </div>
   </div>
