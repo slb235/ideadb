@@ -19,7 +19,11 @@
             <% end %>
             <a class='to-user' data-user='<%= a.user.name %>' href="#"><%= a.user.name %></a>
             <%= " #{a.action} " %>
-            <a class='to-idea' href="#<%= a.idea.id %>">#<%= a.idea.id %></a>
+            <% if a.idea %>
+              <a class='to-idea' href="#<%= a.idea.id %>">#<%= a.idea.id %></a>
+            <% else %>
+              deleted
+            <% end %>
             <span class="authored-at" data-livestamp="<%= a.created_at.to_i %>"></span>
             <br>
             <% if i > 4 %>
