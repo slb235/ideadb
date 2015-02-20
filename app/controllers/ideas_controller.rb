@@ -5,7 +5,24 @@ class IdeasController < ApplicationController
     @project = Project.find_by_id(params[:project_id])
     @ideas = @project.ideas.all :order => :id
     @pu = ProjectUser.where(:user_id => current_user, :project_id => @project)
-    @activity = Activity.where(:project_id => @project.id).order('created_at DESC').limit(25)
+    db_activity = Activity.where(:project_id => @project.id).order('created_at DESC').limit(75)
+    @activity = []
+    prev_act = nil
+
+    db_activity.each do |act|
+      if prev_act
+        if act.user == prev_act.user and act.idea == prev_act.idea and act.action == prev_act.action
+        else
+          @activity.push prev_act
+          prev_act = act
+        end
+      else
+        prev_act = act
+      end
+    end
+    @activity.push prev_act
+
+
 
     respond_to do |format|
       format.html # index.html.erb
