@@ -23,38 +23,39 @@ class Ideadb.Views.Ideas.AddView extends Backbone.View
       @known_tags = taglist
 
   showIdeaPopover: () ->
-    @.$('#new_idea_title').popover
+    @$('#new_idea_title').popover
       title: 'Describe your idea'
       content: '[Press TAB]'
     #@.$('#new_idea_title').popover 'show'
+    autosize @$('#new_idea_title')
 
 
   hideIdeaPopover: () ->
-    @.$('#new_idea_title').popover 'hide'
+    @$('#new_idea_title').popover 'hide'
 
   showTagsPopover: () ->
-    @.$('#new_idea_tags').popover
+    @$('#new_idea_tags').popover
       title: 'Add tags'
       content: 'Add Tags or [Press Enter]'
-    @.$('#new_idea_tags').popover 'show'
+    @$('#new_idea_tags').popover 'show'
 
 
   hideTagsPopover: () ->
-    @.$('#new_idea_tags').popover 'hide'
+    @$('#new_idea_tags').popover 'hide'
 
   render: () ->
     idea_title = ''
     idea_title = @.$('#new_idea_title').val() if @.$('#new_idea_title')
 
-    @.$el.html @template(add_tags: @add_tags)
-    @.$('#new_idea_title').val idea_title
+    @$el.html @template(add_tags: @add_tags)
+    @$('#new_idea_title').val idea_title
 
-    @.$('#new_idea_tags').typeahead
+    @$('#new_idea_tags').typeahead
       source: (query) =>
         return @known_tags.filter (t) -> t.toLowerCase().indexOf(query.toLowerCase()) != -1
-
+    
   onTagKeyPress: (e) ->
-    val = @.$('#new_idea_tags').val().trim()
+    val = @$('#new_idea_tags').val().trim()
     if e.keyCode == 13
       if val.length
         unless _.contains @add_tags, val
@@ -65,10 +66,10 @@ class Ideadb.Views.Ideas.AddView extends Backbone.View
         @onAddIdea()
 
   updatePopover: () ->
-    val = @.$('#new_idea_tags').val().trim()
-    if @.$('#new_idea_tags').data('popover').options.content != '[Press Enter]'
-      @.$('#new_idea_tags').data('popover').options.content = '[Press Enter]'
-      @.$('#new_idea_tags').popover 'show'
+    val = @$('#new_idea_tags').val().trim()
+    if @$('#new_idea_tags').data('popover').options.content != '[Press Enter]'
+      @$('#new_idea_tags').data('popover').options.content = '[Press Enter]'
+      @$('#new_idea_tags').popover 'show'
 
   onTagRemove: (e) ->
     e.preventDefault()
@@ -83,7 +84,7 @@ class Ideadb.Views.Ideas.AddView extends Backbone.View
       title: @.$('#new_idea_title').val()
       tags: tags
       user: window.Ideadb.Config.current_user
-    @.$('#new_idea_title').val('')
+    @$('#new_idea_title').val('')
     @add_tags = []
     @render()
 

@@ -1,6 +1,6 @@
 <h3>Add Idea</h3>
 <div class="content">
-  <textarea clas="input-xlarge" id="new_idea_title" placeholder="Describe your idea..."></textarea>
+  <textarea clas="input-xlarge" id="new_idea_title" placeholder="Describe your idea..." rows="3"></textarea>
   <input type="text" class="input-xlarge" id="new_idea_tags" placeholder="Give some tags to it...">
   <% _.each(add_tags, function(tag) { %>
   <span class="tag"><%= tag %><a href="#" class="rm-tag tag-delete" data-tag="<%= tag %>">x</a></span>

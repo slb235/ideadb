@@ -64,7 +64,7 @@ class Ideadb.Views.Ideas.IdeaView extends Backbone.Marionette.ItemView
     e.preventDefault()
     @$('.tag-add-line').show()
     @$('.tag-input').focus()
-    @.$('.tag-input').typeahead
+    @$('.tag-input').typeahead
       source: (query) =>
         return window.router.addView.known_tags.filter (t) -> t.toLowerCase().indexOf(query.toLowerCase()) != -1
 
@@ -99,6 +99,8 @@ class Ideadb.Views.Ideas.IdeaView extends Backbone.Marionette.ItemView
       @$('.comments').html @comment_view.render().$el
       @$('.comments').show()
       @$('.icon-toggle').removeClass('icon-comment-alt').addClass('icon-comments-alt')
+
+    @$('.idea-title.view').find('a').attr('target', '_blank')
 
 
   showComments: (e) ->
