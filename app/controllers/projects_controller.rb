@@ -78,7 +78,7 @@ class ProjectsController < ApplicationController
   def dump
     data = @project.to_json
 
-    send_data data, filename: "#{@project.title}.json"
+    send_data data, filename: "#{@project.title}-#{DateTime.now.to_s}.json"
   end
 
   private
