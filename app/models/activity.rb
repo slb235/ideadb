@@ -6,7 +6,7 @@ class Activity < ActiveRecord::Base
 
   def as_json(options={})
     {
-      idea: idea.id,
+      idea: idea ? idea.id : 0,
       created_at: created_at,
       user: user,
       action: action,
