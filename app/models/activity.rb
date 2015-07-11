@@ -8,7 +8,7 @@ class Activity < ActiveRecord::Base
     {
       idea: idea ? idea.id : 0,
       created_at: created_at,
-      user: user,
+      user: user ? user.id : 0,
       action: action,
       updated_at: updated_at
     }
