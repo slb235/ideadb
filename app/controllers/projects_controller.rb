@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   before_filter :signed_in_user
-  before_filter :correct_user, :only => [:edit, :update, :show, :rename_tag, :remove_user, :edit_style, :update_style, :destroy]
+  before_filter :correct_user, :only => [:edit, :update, :show, :rename_tag, :remove_user, :edit_style, :update_style, :destroy, :dump]
 
   def new
     @project = Project.new
@@ -73,6 +73,12 @@ class ProjectsController < ApplicationController
   def destroy
     @project.destroy
     redirect_to dashboard_path
+  end
+
+  def dump
+    data = @project.to_json
+
+    send_data data, filename: "#{@project.title}.json"
   end
 
   private

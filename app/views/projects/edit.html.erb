@@ -20,6 +20,9 @@
 <% end %>
 </ul>
 <a href="#addcollab" data-toggle="modal" role="button" class="btn btn-primary">Add Collaborator</a>
+<h2>Dump Project</h2>
+<p>Dumps complete backup of the common project. Does not include user specific settings (i.e. theme). There is no restore (yet).</p>
+<%= link_to 'Dump', project_dump_path(@project), :class => 'btn btn-primary' %>
 <p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><hr>
 <h2>Delete Project</h2>
 <p>Once deleted, it's impossible to restore, so think twice when clicking the following red button. There is no additional confirmation.<p>

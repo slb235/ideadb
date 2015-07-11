@@ -12,4 +12,14 @@ class Project < ActiveRecord::Base
   def last_activity
     activities.last
   end
+
+  def as_json(options={})
+    {
+      title: title,
+      users: users,
+      activities: activities,
+      ideas: ideas.to_json( export: true )
+    }
+  end
 end
+

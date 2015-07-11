@@ -4,6 +4,7 @@ Ideadb::Application.routes.draw do
   resources :sessions, :only => [:new, :create, :destroy]
   resources :projects, :only => [:new, :create, :edit, :update] do
     get 'deletenowforsuremyshizzle', :action => 'destroy'
+    get 'dump'
     get 'edit_style'
     put 'update_style'
     post 'remove_user/:user_id', :action => 'remove_user'
