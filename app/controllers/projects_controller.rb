@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   before_filter :signed_in_user
-  before_filter :correct_user, :only => [:edit, :update, :show, :rename_tag, :remove_user, :edit_style, :update_style]
+  before_filter :correct_user, :only => [:edit, :update, :show, :rename_tag, :remove_user, :edit_style, :update_style, :destroy]
 
   def new
     @project = Project.new
@@ -68,6 +68,11 @@ class ProjectsController < ApplicationController
     else
       render 'edit'
     end    
+  end
+
+  def destroy
+    @project.destroy
+    redirect_to dashboard_path
   end
 
   private
