@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
                     :uniqueness => { :case_sensitive => false }
   validates :password, :presence => true, :length => { :minimum => 6 }
   validates :password_confirmation, :presence => true
-  validates :phone, format: { with: /^[1-9][0-9]{6,15}$/}
+  validates :phone, format: { with: /^[1-9][0-9]{6,15}$/, allow_blank: true}
 
 
   def as_json(options={})
