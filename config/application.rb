@@ -60,5 +60,11 @@ module Ideadb
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+
+  end
+
+  def self.send_sms(number, text)
+    Ideadb::Application.config.nexmo.send_message(from: 'IdeaDB', to: number, text: text)
   end
 end

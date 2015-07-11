@@ -58,3 +58,4 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 
 # To use acts_as_taggable
 gem 'acts-as-taggable-on', '~> 2.4.1'
+gem 'nexmo'

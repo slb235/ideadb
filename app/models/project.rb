@@ -18,7 +18,7 @@ class Project < ActiveRecord::Base
       title: title,
       users: users,
       activities: activities,
-      ideas: ideas
+      ideas: ideas.map { |i| { title: i.title, user: i.user ? i.user.id : 0, tags: i.tags.map { |t| t.name }, comments: i.comments.map { |c| { id: c.id, content: c.content, user: c.user ? c.user.id : 0, updated_at: c.updated_at, created_at: c.created_at } }, created_at: i.created_at, updated_at: i.updated_at } }
     }
   end
 end

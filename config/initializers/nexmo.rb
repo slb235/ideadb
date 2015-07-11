@@ -1,0 +1,1 @@
+Ideadb::Application.config.nexmo = Nexmo::Client.new(key: ENV['NEXMO_KEY'], secret: ENV['NEXMO_SECRET'])

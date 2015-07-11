@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131107170859) do
+ActiveRecord::Schema.define(:version => 20150711213043) do
 
   create_table "activities", :force => true do |t|
     t.integer  "project_id"
@@ -55,6 +55,8 @@ ActiveRecord::Schema.define(:version => 20131107170859) do
     t.string  "tag_bg"
     t.string  "tag_color"
     t.string  "link_color"
+    t.boolean "email_notify", :default => false
+    t.boolean "sms_notify",   :default => false
   end
 
   add_index "projects_users", ["project_id", "user_id"], :name => "index_projects_users_on_project_id_and_user_id"
@@ -84,6 +86,7 @@ ActiveRecord::Schema.define(:version => 20131107170859) do
     t.datetime "updated_at",      :null => false
     t.string   "password_digest"
     t.string   "remember_token"
+    t.string   "phone"
   end
 
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token"

@@ -1,8 +1,20 @@
-<% provide(:title, 'Edit Project Style') %>
-<h2>Edit Project Style</h2>
+<% provide(:title, 'Personal project settings') %>
+<h1>Personal project settings</h1>
 <%= form_for @pu, :as => :pu, :url => project_update_style_path(@project) do |f| %>
   <%= render 'shared/error_messages', :object => f.object %>
+  <h2>Project Notifications</h2>
+  <p>Notifications are send when ideas are added, to the email or phone number in your 
+  <%= link_to "profile", edit_user_path(current_user) %>
+  </p>
+  
+  <%= f.check_box :email_notify %>
+  <%= f.label :email_notify, 'Email notification' %>
 
+  <%= f.check_box :sms_notify %>
+  <%= f.label :sms_notify, 'SMS notification' %>
+
+  <h2>Project Style</h2>
+  
   <%= f.label :body_bg, 'Background' %>
   <%= f.text_field :body_bg, :class => 'input-xxlarge' %>
 
@@ -16,5 +28,5 @@
   <%= f.text_field :link_color, :class => 'input-large' %>  
 
   <br />
-  <%= f.submit "Save Project Style", :class => "btn btn-primary" %>
+  <%= f.submit "Save personal project settings", :class => "btn btn-primary" %>
 <% end %>

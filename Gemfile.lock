@@ -81,6 +81,7 @@ GEM
       railties
     mime-types (1.23)
     multi_json (1.7.3)
+    nexmo (3.0.0)
     pg (0.12.2)
     polyglot (0.3.3)
     rack (1.4.5)
@@ -149,6 +150,7 @@ DEPENDENCIES
   json
   marionette-rails
   meta_request
+  nexmo
   pg (= 0.12.2)
   rails (= 3.2.9)
   rails-backbone

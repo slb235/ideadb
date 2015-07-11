@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   has_many :ideas
   has_many :comments
 
-  attr_accessible :name, :email, :password, :password_confirmation
+  attr_accessible :name, :email, :password, :password_confirmation, :phone
   has_secure_password
 
   before_save { |user| user.email = email.downcase }
@@ -17,6 +17,7 @@ class User < ActiveRecord::Base
                     :uniqueness => { :case_sensitive => false }
   validates :password, :presence => true, :length => { :minimum => 6 }
   validates :password_confirmation, :presence => true
+  validates :phone, format: { with: /^[1-9][0-9]{6,15}$/}
 
 
   def as_json(options={})

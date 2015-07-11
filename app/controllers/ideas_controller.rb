@@ -20,9 +20,8 @@ class IdeasController < ApplicationController
         prev_act = act
       end
     end
-    @activity.push prev_act
 
-
+    @activity.push prev_act unless prev_act.nil?
 
     respond_to do |format|
       format.html # index.html.erb
@@ -57,11 +56,7 @@ class IdeasController < ApplicationController
   def create
     @idea = Idea.new(:title => params[:idea][:title],
                      :project_id => params[:project_id])
-
     @idea.user = current_user
-
-
-
     get_tags params
 
     respond_to do |format|

@@ -5,20 +5,26 @@ class Idea < ActiveRecord::Base
 
   has_many :comments
 
+  after_create :send_notifications
+
   acts_as_taggable
 
   def as_json(options={})
-    if options[:web]
-      super(:include => [:tags, :user, :comments])
-    else
-      {
-        title: title,
-        user: user ? user.id : 0,
-        tags: tags.map { |t| t.name },
-        comments: comments.map { |c| { id: c.id, content: c.content, user: c.user ? c.user.id : 0, updated_at: updated_at, created_at: created_at } },
-        created_at: created_at,
-        updated_at: updated_at
-      }     
-    end
-  end  
+    super(:include => [:tags, :user, :comments])
+  end
+
+  def send_notifications
+    project.project_users.each do |pu|
+      unless pu.user == user
+        if pu.sms_notify
+          unless pu.user.phone.empty?
+            Ideadb.send_sms pu.user.phone, "#{user.name} added an idea to #{project.title}"
+          end
+        end
+        if pu.email_notify
+          UserMailer.idea_notify(self, pu.user).deliver
+        end
+      end
+    end 
+  end
 end

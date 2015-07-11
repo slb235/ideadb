@@ -4,5 +4,5 @@ class ProjectUser < ActiveRecord::Base
   belongs_to :user
   belongs_to :project
 
-  attr_accessible :body_bg, :tag_bg, :tag_color, :link_color, :project, :user
+  attr_accessible :body_bg, :tag_bg, :tag_color, :link_color, :email_notify, :sms_notify, :project, :user
 end
