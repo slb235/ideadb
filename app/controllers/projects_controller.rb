@@ -34,8 +34,10 @@ class ProjectsController < ApplicationController
     if params[:email]
       user = User.find_by_email(params[:email])
       if user
-        @project.users << user
-        @project.save
+        unless @project.users.include? user
+          @project.users << user
+          @project.save
+        end
       else
         flash.now[:error] = "Could not find that address"
       end
