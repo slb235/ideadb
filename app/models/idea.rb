@@ -15,6 +15,7 @@ class Idea < ActiveRecord::Base
         title: title,
         user: user ? user.id : 0,
         tags: tags.map { |t| t.name },
+        comments: comments.map { |c| { id: c.id, content: c.content, user: c.user ? c.user.id : 0, updated_at: updated_at, created_at: created_at } },
         created_at: created_at,
         updated_at: updated_at
       }     
