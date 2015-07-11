@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <p>
+      Hello <%= @user.name %>,<br>
+      <br>
+      see subject. Link for your convenience: <br><a href="http://ideadb.herokuapp.com/projects/<%= @idea.project.id %>/ideas#<%= @idea.id %>">http://ideadb.herokuapp.com/projects/<%= @idea.project.id %>/ideas</a>.
+    </p>
+    <p>Sincerely - Your ideadb service team</p>
+    <p>&nbsp;</p>
+    <p>
+    ---<br>
+    If you don't want to receive mails like this, dont activate them.
+    </p>
+  </body>
+</html>
