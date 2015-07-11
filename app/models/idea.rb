@@ -11,7 +11,7 @@ class Idea < ActiveRecord::Base
     if options[:export]
       {
         title: title,
-        user: user.id,
+        user: user ? user.id : 0,
         tags: tags.map { |t| t.name },
         created_at: created_at,
         updated_at: updated_at
