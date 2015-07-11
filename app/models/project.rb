@@ -18,7 +18,7 @@ class Project < ActiveRecord::Base
       title: title,
       users: users,
       activities: activities,
-      ideas: ideas.to_json( export: true )
+      ideas: ideas
     }
   end
 end

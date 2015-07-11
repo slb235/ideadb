@@ -8,16 +8,16 @@ class Idea < ActiveRecord::Base
   acts_as_taggable
 
   def as_json(options={})
-    if options[:export]
+    if options[:web]
+      super(:include => [:tags, :user, :comments])
+    else
       {
         title: title,
         user: user ? user.id : 0,
         tags: tags.map { |t| t.name },
         created_at: created_at,
         updated_at: updated_at
-      }
-    else
-      super(:include => [:tags, :user, :comments])
+      }     
     end
   end  
 end

@@ -45,7 +45,7 @@
     // Blog is the app name
 
     window.Ideadb.Application.start({
-      ideas: <%= @ideas.to_json.html_safe %>,
+      ideas: <%= @ideas.to_json(web: true).html_safe %>,
       config: {
         project_id: <%= @project.id %>,
         current_user: <%= current_user.to_json.html_safe %>
