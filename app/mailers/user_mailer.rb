@@ -9,6 +9,6 @@ class UserMailer < ActionMailer::Base
   def idea_notify(idea, user)
     @idea = idea
     @user = user
-    mail(:to => user.email, :subject => "IdeaDB: #{user.name} added an idea to #{idea.project.title}")
+    mail(:to => user.email, :subject => "IdeaDB: #{idea.user.name} added an idea to #{idea.project.title}")
   end
 end
